@@ -164,15 +164,32 @@ namespace GLG
                     Retdata.Generator(psf, data, client, newPath, products, pulsz, ref wiever, new_page, constdata, logo_image_number);
                     dokumentpath = wiever;
                     pdfDocumentViewer1.LoadFromFile(wiever);
+
+                }
+                else
+                {
+                    if (run)
+                    {
+                        throw new Exception("not found data");
+                    }
+                    finishclear();
                 }
             }
-            catch (Exception )
-            {
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show("Hiba történt az adatok keresése során!", "HIBA A FUTÁS SORÁN;", buttons);
-                finishclear();
-
+            catch (Exception ex)
+            { 
+                if(ex.Message.Equals("not found data"))
+                {
+                    throw ex;
+                }
+                else
+                {
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show("Hiba történt az adatok keresése során!", "Hiba",buttons);
+                    finishclear();
+                }
+               
             }
+            
         }
         private void First3_Data()
         {
@@ -257,84 +274,60 @@ namespace GLG
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            if (!run)
-            {
-                fullDownloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
-                watcher = new FileSystemWatcher(fullDownloadsPath);
-
-                // watcher.Created += OnFileCreated;
-                watcher.Changed += OnFileChanged; //Changeevent;
-                watcher.Error += OnError;
-                // start
-                watcher.EnableRaisingEvents = true;
-                MessageBox.Show("Figyelo fut");
-                run = true;
-            }
-            else
+            if (run)
             {
                 run = false;
                 watcher.EnableRaisingEvents = false;
-                MessageBox.Show("Figyelo leallt");
+                MessageBox.Show("Figyelő leállítva.");
+            }
+            else
+            {
+                fullDownloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+                watcher = new FileSystemWatcher(fullDownloadsPath);
+                watcher.Filter = "*.pdf";
+                watcher.NotifyFilter = NotifyFilters.FileName;
+                watcher.Renamed += OnFileRenamed;
+                watcher.Error += OnError;
+                watcher.EnableRaisingEvents = true;
+                MessageBox.Show("Figyelő elindult.");
+                run = true;
             }
         }
-
-        public bool firesttime_automat = true;
-        public string previous_file = null;
-        /*  private  void OnFileCreated(object sender, FileSystemEventArgs e)
-          {
-              if (Path.GetExtension(e.FullPath).Equals(".pdf", StringComparison.OrdinalIgnoreCase) && newpdf)
-              {
-                  task(sender, e);
-              }
-              else
-              {
-                  newpdf = true;
-              }   
-          }*/
-        private void OnFileChanged(object sender, FileSystemEventArgs e)
+        private void OnFileRenamed(object sender, FileSystemEventArgs e)
         {
             if (System.IO.Path.GetExtension(e.FullPath).Equals(".pdf", StringComparison.OrdinalIgnoreCase))
             {
-
-                if (firesttime_automat)
+                if (Retdata.pdfText(e.FullPath)!=string.Empty)
                 {
                     task(sender, e);
-                    previous_file = e.FullPath;
-                    firesttime_automat = false;
                 }
-                else
-                {
-                    if (previous_file != e.FullPath)
-                    {
-                        task(sender, e);
-                    }
-                }
-
             }
         }
         private void task(object sender, FileSystemEventArgs e)
         {
-
             this.Invoke(new System.Action(async () =>
             {
-                await Task.Delay(500);
-                wiever = dokumentpath = e.FullPath;
-                printDuplex = false;
-                button4_Click_1(sender, e);
-                printDuplex = true;
-
-                finishclear();
-                Data_scanning(e.FullPath);
-                button4_Click_1(sender, e);
-                dokumentpath = null;
+                try
+                {
+                    wiever = dokumentpath = e.FullPath;
+                    printDuplex = false;
+                    button4_Click_1(sender, e);
+                    printDuplex = true;
+                    finishclear();
+                    Data_scanning(e.FullPath);
+                    button4_Click_1(sender, e);
+                    dokumentpath = null;
+                }catch (Exception ex)
+                {
+                    //empty doc
+                    finishclear();
+                }    
             }));
         }
 
         private static void OnError(object sender, ErrorEventArgs e)
         {
-            // Ezt a függvényt meghívjuk, ha hiba történik a figyelés során
-            MessageBox.Show("Figyelo megallt");
+            MessageBox.Show("Hiba: Figyelő leállt!");
         }
         private void finishclear()
         {

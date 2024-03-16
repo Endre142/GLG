@@ -92,7 +92,7 @@ namespace GLG
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            PdfFont f = PdfFontFactory.CreateFont("C:/Windows/Fonts/Arial.ttf", PdfEncodings.IDENTITY_H);
+            PdfFont f = PdfFontFactory.CreateFont("C:/Windows/Fonts/Arial Black.ttf", PdfEncodings.IDENTITY_H);
             pdf.SetDefaultPageSize(PageSize.A4);
 
             int wi = (Convert.ToInt32(PageSize.A4.GetWidth()) - 2 * 20) / 3;

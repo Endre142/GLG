@@ -1,4 +1,5 @@
 ﻿using iText.IO.Font;
+using iText.IO.Font.Constants;
 using iText.IO.Image;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
@@ -57,10 +58,10 @@ namespace GLG
             PdfWriter writer = new PdfWriter(last_path);
             iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer);
             Document document = new Document(pdf);
-           
-            try
-            {
-                PdfFont f = PdfFontFactory.CreateFont("C:/Windows/Fonts/Arial", PdfEncodings.IDENTITY_H);
+
+
+
+            PdfFont f = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
                 pdf.SetDefaultPageSize(PageSize.A4);
                 int wi = (Convert.ToInt32(PageSize.A4.GetWidth()) - 2 * 20) / 3;
                 string imagePath;
@@ -286,14 +287,7 @@ namespace GLG
                 document.Close();
                 pdf.Close();
                 writer.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("hiba a font letrehozasanal");
-            }
-
-           
-            
+                
 
         }
     }

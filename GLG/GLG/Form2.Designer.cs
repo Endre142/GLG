@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.DesktopPanel = new System.Windows.Forms.Panel();
             this.SecondPage = new System.Windows.Forms.Button();
             this.FirstPage = new System.Windows.Forms.Button();
-            this.DesktopPanel = new System.Windows.Forms.Panel();
             this.MenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,20 @@
             this.MenuPanel.Size = new System.Drawing.Size(800, 60);
             this.MenuPanel.TabIndex = 0;
             // 
+            // DesktopPanel
+            // 
+            this.DesktopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DesktopPanel.AutoScroll = true;
+            this.DesktopPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DesktopPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DesktopPanel.ForeColor = System.Drawing.Color.Black;
+            this.DesktopPanel.Location = new System.Drawing.Point(0, 60);
+            this.DesktopPanel.Name = "DesktopPanel";
+            this.DesktopPanel.Size = new System.Drawing.Size(800, 390);
+            this.DesktopPanel.TabIndex = 1;
+            // 
             // SecondPage
             // 
             this.SecondPage.Dock = System.Windows.Forms.DockStyle.Left;
@@ -55,8 +69,7 @@
             this.SecondPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SecondPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SecondPage.ForeColor = System.Drawing.Color.SlateGray;
-            this.SecondPage.Image = ((System.Drawing.Image)(resources.GetObject("SecondPage.Image")));
-            this.SecondPage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SecondPage.Image = global::GLG.Properties.Resources.kicsi_2;
             this.SecondPage.Location = new System.Drawing.Point(220, 0);
             this.SecondPage.Name = "SecondPage";
             this.SecondPage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -70,14 +83,13 @@
             // 
             // FirstPage
             // 
-            this.FirstPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.FirstPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.FirstPage.Dock = System.Windows.Forms.DockStyle.Left;
             this.FirstPage.FlatAppearance.BorderSize = 0;
             this.FirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FirstPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FirstPage.ForeColor = System.Drawing.Color.SlateGray;
-            this.FirstPage.Image = ((System.Drawing.Image)(resources.GetObject("FirstPage.Image")));
-            this.FirstPage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.FirstPage.Image = global::GLG.Properties.Resources.kicsi_1;
             this.FirstPage.Location = new System.Drawing.Point(0, 0);
             this.FirstPage.Name = "FirstPage";
             this.FirstPage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -88,20 +100,6 @@
             this.FirstPage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.FirstPage.UseVisualStyleBackColor = true;
             this.FirstPage.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // DesktopPanel
-            // 
-            this.DesktopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DesktopPanel.AutoScroll = true;
-            this.DesktopPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DesktopPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DesktopPanel.ForeColor = System.Drawing.Color.Black;
-            this.DesktopPanel.Location = new System.Drawing.Point(0, 60);
-            this.DesktopPanel.Name = "DesktopPanel";
-            this.DesktopPanel.Size = new System.Drawing.Size(800, 390);
-            this.DesktopPanel.TabIndex = 1;
             // 
             // Form2
             // 

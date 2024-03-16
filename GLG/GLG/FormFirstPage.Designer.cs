@@ -258,7 +258,7 @@ namespace GLG
             // 
             // pictureBox1
             // 
-          //  this.pictureBox1.BackgroundImage = global::GLG.Properties.Resources.icon;
+            this.pictureBox1.BackgroundImage = global::GLG.Properties.Resources.icon;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
