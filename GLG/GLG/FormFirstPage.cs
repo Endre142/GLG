@@ -1,7 +1,4 @@
-﻿using iText.IO.Font;
-using iText.Kernel.Font;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +7,16 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using iText.IO.Image;
+using iText.IO;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.IO.Image;
 
 
 namespace GLG
@@ -44,12 +46,9 @@ namespace GLG
             InitializeComponent();
         }
 
-
-    
-
         private int ConstDataReader(ref List<string> constdata)
         {
-            string filePath = Form1.filepaths[2];
+            string filePath = Form1.getfilepaths(2);
             int firstPageLastPoz = 0;
             int i = 0;
             if (File.Exists(filePath))
@@ -77,7 +76,7 @@ namespace GLG
 
         private void ConstDataWhriter(ref List<string> constdata)
         {
-            string filePath = Form1.filepaths[2];
+            string filePath = Form1.getfilepaths(2);
             string newListText = string.Join(Environment.NewLine, constData);
             File.WriteAllText(filePath, newListText);
         }
@@ -88,11 +87,12 @@ namespace GLG
             string[] lines = textBox1.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             newData.AddRange(lines);
 
-            PdfWriter writer = new PdfWriter(Form1.filepaths[0]);
+            PdfWriter writer = new PdfWriter(Form1.getfilepaths(0));
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            PdfFont f = PdfFontFactory.CreateFont("C:/Windows/Fonts/Arial Black.ttf", PdfEncodings.IDENTITY_H);
+            string fontPath2 = @"C:\Windows\Fonts\arial.ttf";
+            PdfFont f = PdfFontFactory.CreateFont(fontPath2, PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
             pdf.SetDefaultPageSize(PageSize.A4);
 
             int wi = (Convert.ToInt32(PageSize.A4.GetWidth()) - 2 * 20) / 3;
@@ -234,7 +234,7 @@ namespace GLG
             document.Close();
             pdf.Close();
             writer.Close();
-            pdfDocumentViewer1.LoadFromFile(Form1.filepaths[0]);
+            pdfDocumentViewer1.LoadFromFile(Form1.getfilepaths(0));
         }
 
         private void FormFirstPage_Load_1(object sender, EventArgs e)

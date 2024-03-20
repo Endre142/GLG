@@ -1,19 +1,23 @@
-﻿using iText.IO.Font;
-using iText.IO.Font.Constants;
-using iText.IO.Image;
+﻿using iText.Layout.Element;
 using iText.Kernel.Font;
+using iText.IO.Font.Constants;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Layout;
-using iText.Layout.Element;
+using iText.IO.Image;
 using iText.Layout.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using iText.IO.Font;
+using System.IO;
+using System.Drawing.Text;
+using System.Drawing;
+
 
 namespace GLG
 {
@@ -59,9 +63,11 @@ namespace GLG
             iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer);
             Document document = new Document(pdf);
 
+            string fontPath2 = @"C:\Windows\Fonts\arial.ttf";
 
-
-            PdfFont f = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            try
+            {
+                PdfFont f = PdfFontFactory.CreateFont(fontPath2, PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
                 pdf.SetDefaultPageSize(PageSize.A4);
                 int wi = (Convert.ToInt32(PageSize.A4.GetWidth()) - 2 * 20) / 3;
                 string imagePath;
@@ -79,8 +85,8 @@ namespace GLG
                 iText.Layout.Element.Image image = new iText.Layout.Element.Image(imageData).ScaleAbsolute(fitWidth: 200, fitHeight: 60);
                 document.Add(image);
                 Paragraph header = new Paragraph(constdata[0] + " \n" + constdata[1]).SetFont(f)
-                   .SetTextAlignment(TextAlignment.CENTER)
-                   .SetFontSize(15);
+                       .SetTextAlignment(TextAlignment.CENTER)
+                       .SetFontSize(15);
 
                 document.Add(header);
 
@@ -287,8 +293,13 @@ namespace GLG
                 document.Close();
                 pdf.Close();
                 writer.Close();
-                
+            }
+                catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
+            
         }
     }
 }

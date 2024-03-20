@@ -1,11 +1,9 @@
 ﻿
-using Spire.Pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -13,42 +11,48 @@ namespace GLG
 {
     public partial class Form1 : Form
     {
-        public static string pdfContent = null;
-        public static int logo_image_number;
-        public static string psf = "";
-        public static string data = "";
-        public static string client = "";
-        public static List<string> products = new List<string>(); // products list;
-        public static string newPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GLG pdf-ek");
-        int pulsz = 4; // URES SOROK Reparati alatt
-        public string wiever = null, dokumentpath = null;
-        public static int volt;
-        public bool new_page = true;
-        public int sor = 4;
-        public bool run = false;
-        public bool printDuplex = true;
+        private string pdfContent = null;
+        private int logo_image_number;
+        private string psf = "";
+        private string data = "";
+        private string client = "";
+        private List<string> products = new List<string>(); // products list;
+        private string newPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GLG pdf-ek");
+        private int pulsz = 4; // URES SOROK Reparati alatt
+        private string wiever = null, facturapath = null;
+        private  int volt;
+        private bool new_page = true;
+        private int sor = 4;
+        private bool run = false;
         private Form2 form2;
-        public static List<string> constdata = new List<string>();
-        public static string fullDownloadsPath;
-        public static FileSystemWatcher watcher = null;
-        public static string[] filepaths = new string[]
+        private static List<string> constdata = new List<string>();
+        private string fullDownloadsPath;
+        private FileSystemWatcher watcher = null;
+        private static string[] filepaths = new string[]
         {
              "..//..//files//firstpage.pdf",
              "..//..//files//secondpage.pdf",
              "..//..//files//ConstData.txt",
              "..//..//files//clear.pdf"
         };
-       
 
         public Form1()
         {
             InitializeComponent();
         }
+        public static string getfilepaths(int index)
+        {
+            return filepaths[index];
+        }
+        public static void setLogoImagenumber(int logo_image_number)
+        {
+            logo_image_number = logo_image_number;
+        }
         private void Form2_FormClosed(object sender, EventArgs e)
         {
             this.Show();
         }
-        public static void ConstDataReader() 
+        public static void ConstDataReader()
         {
             if (constdata.Count != 0)
             {
@@ -66,13 +70,13 @@ namespace GLG
                     }
                     reader.Close();
                 }
-                logo_image_number = Convert.ToInt16(constdata[15]);
+                setLogoImagenumber(Convert.ToInt16(constdata[15]));  
 
             }
             else
             {
                 MessageBox.Show("Elso olvasa meghiusult form1");
-                logo_image_number = 0;
+                setLogoImagenumber(0);
             }
         }
         private void Form1_Load_1(object sender, EventArgs e)
@@ -111,8 +115,8 @@ namespace GLG
         {
             if (form2 == null || form2.IsDisposed)
             {
-              form2 = new Form2();
-              form2.Form2Closed += Form2_FormClosed;
+                form2 = new Form2();
+                form2.Form2Closed += Form2_FormClosed;
             }
 
             this.Hide();
@@ -121,17 +125,12 @@ namespace GLG
         private void button1_Click(object sender, EventArgs e)
         {
             finishclear();
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            facturapath=CommonPart.Filedialogpath();
+            if (facturapath!=null)
             {
-                openFileDialog.Filter = "pdf files (*.pdf)|*.pdf";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Data_scanning(openFileDialog.FileName);
-                }
+                Data_scanning(facturapath);
             }
+            
         }
         void Data_scanning(string filepath)
         {
@@ -140,9 +139,9 @@ namespace GLG
             try
             {
                 First3_Data();
-                textBox5.Text += psf;
-                textBox6.Text += data;
-                textBox7.Text += client;
+                textBox5.Text = psf;
+                textBox6.Text = data;
+                textBox7.Text = client;
 
                 string pattern = @"(\d+)\s([A-Za-z].*?),.*?([bB][uU][cC]\s(\d+))";
                 MatchCollection matches = Regex.Matches(pdfContent, pattern);
@@ -162,13 +161,12 @@ namespace GLG
                 if (products.Count() != 0)
                 {
                     Retdata.Generator(psf, data, client, newPath, products, pulsz, ref wiever, new_page, constdata, logo_image_number);
-                    dokumentpath = wiever;
                     pdfDocumentViewer1.LoadFromFile(wiever);
 
                 }
                 else
                 {
-                    if (run)
+                    if (checkBox3.Checked)
                     {
                         throw new Exception("not found data");
                     }
@@ -176,20 +174,20 @@ namespace GLG
                 }
             }
             catch (Exception ex)
-            { 
-                if(ex.Message.Equals("not found data"))
+            {
+                if (ex.Message.Equals("not found data"))
                 {
                     throw ex;
                 }
                 else
                 {
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    MessageBox.Show("Hiba történt az adatok keresése során!", "Hiba",buttons);
+                    MessageBox.Show("Hiba történt az adatok keresése során!", "Hiba", buttons);
                     finishclear();
                 }
-               
+
             }
-            
+
         }
         private void First3_Data()
         {
@@ -214,30 +212,21 @@ namespace GLG
         }
         private void button4_Click_1(object sender, EventArgs e)
         {
-            if (dokumentpath != null)
+            CommonPart.printer(facturapath, false);
+            if (wiever != null)
             {
-                Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
-                doc.LoadFromFile(wiever);
-                bool canDuplex = doc.PrintSettings.CanDuplex;
-                if (canDuplex && printDuplex)
-                {
-                    doc.PrintSettings.Duplex = System.Drawing.Printing.Duplex.Vertical;
-                }
-
-                doc.Print();
+                CommonPart.printer(wiever, true);
                 finishclear();
             }
         }
         private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (new_page)
+            if (checkBox1.Checked)
             {
-                new_page = false;
                 Retdata.Generator(psf, data, client, newPath, products, sor, ref wiever, new_page, constdata, logo_image_number);
             }
             else
-            {
-                new_page = true;
+            { 
                 Retdata.Generator(psf, data, client, newPath, products, sor, ref wiever, new_page, constdata, logo_image_number);
             }
             pdfDocumentViewer1.LoadFromFile(wiever);
@@ -274,34 +263,28 @@ namespace GLG
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            if (run)
+            if (checkBox3.Checked)
             {
-                run = false;
-                watcher.EnableRaisingEvents = false;
-                MessageBox.Show("Figyelő leállítva.");
+                watcher = CommonPart.StartWatcher(sender, e);
+                watcher.Renamed += OnFileRenamed;
+                watcher.EnableRaisingEvents = true;
+                MessageBox.Show("Figyelő elindult.");
+
             }
             else
             {
-                fullDownloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-                watcher = new FileSystemWatcher(fullDownloadsPath);
-                watcher.Filter = "*.pdf";
-                watcher.NotifyFilter = NotifyFilters.FileName;
-                watcher.Renamed += OnFileRenamed;
-                watcher.Error += OnError;
-                watcher.EnableRaisingEvents = true;
-                MessageBox.Show("Figyelő elindult.");
-                run = true;
+                watcher.EnableRaisingEvents = false;
+                MessageBox.Show("Figyelő leállítva.");
             }
         }
         private void OnFileRenamed(object sender, FileSystemEventArgs e)
         {
-            if (System.IO.Path.GetExtension(e.FullPath).Equals(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                if (Retdata.pdfText(e.FullPath)!=string.Empty)
+           
+                if (Retdata.pdfText(e.FullPath) != string.Empty)
                 {
                     task(sender, e);
                 }
-            }
+          
         }
         private void task(object sender, FileSystemEventArgs e)
         {
@@ -309,26 +292,27 @@ namespace GLG
             {
                 try
                 {
-                    wiever = dokumentpath = e.FullPath;
-                    printDuplex = false;
-                    button4_Click_1(sender, e);
-                    printDuplex = true;
-                    finishclear();
+                    CommonPart.printer(e.FullPath, false);
                     Data_scanning(e.FullPath);
-                    button4_Click_1(sender, e);
-                    dokumentpath = null;
-                }catch (Exception ex)
+                    CommonPart.printer(wiever, true);
+                    wiever = null;
+                    finishclear();
+                }
+                catch (Exception ex)
                 {
                     //empty doc
                     finishclear();
-                }    
+                }
             }));
         }
 
-        private static void OnError(object sender, ErrorEventArgs e)
+       
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show("Hiba: Figyelő leállt!");
+            Program.GetMainForm().Show();
         }
+
         private void finishclear()
         {
             pdfDocumentViewer1.LoadFromFile(filepaths[3]);

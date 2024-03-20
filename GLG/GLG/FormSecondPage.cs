@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.IO.Font.Constants;
 
 
 namespace GLG
@@ -49,7 +50,7 @@ namespace GLG
 
         private int ConstDataReader(ref List<string> constdata)
         {
-            string filePath =Form1.filepaths[2];
+            string filePath =Form1.getfilepaths(2)  ;
             int secondPagePoz = 0;
             int i=0;
             if (File.Exists(filePath))
@@ -73,7 +74,7 @@ namespace GLG
 
         private void ConstDataWhriter( ref List<string> constdata)
         {
-            string filePath = Form1.filepaths[2];
+            string filePath = Form1.getfilepaths(2);
             string newListText = string.Join(Environment.NewLine, constData);
             File.WriteAllText(filePath, newListText);
         }
@@ -84,11 +85,12 @@ namespace GLG
             newData.AddRange(lines);
 
 
-            PdfWriter writer = new PdfWriter(Form1.filepaths[1]);
+            PdfWriter writer = new PdfWriter(Form1.getfilepaths(1));
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            PdfFont f = PdfFontFactory.CreateFont("C:/Windows/Fonts/Arial.ttf", PdfEncodings.IDENTITY_H);
+            string fontPath2 = @"C:\Windows\Fonts\arial.ttf";
+            PdfFont f = PdfFontFactory.CreateFont(fontPath2, PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
             pdf.SetDefaultPageSize(PageSize.A4);
 
             Paragraph last_page = new Paragraph();
@@ -141,7 +143,7 @@ namespace GLG
             document.Close();
             pdf.Close();
             writer.Close();
-            pdfDocumentViewer1.LoadFromFile(Form1.filepaths[1]);
+            pdfDocumentViewer1.LoadFromFile(Form1.getfilepaths(1));
             
 
         }
