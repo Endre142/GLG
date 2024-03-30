@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GLG
@@ -14,6 +9,8 @@ namespace GLG
     public partial class Into_one : Form
     {
         private static FileSystemWatcher watcher = null;
+        private string facturpath = null;
+        private bool printDuplex = true;
         public Into_one()
         {
             InitializeComponent();
@@ -36,36 +33,23 @@ namespace GLG
 
         private void automatic_operation_chekbox_CheckedChanged(object sender, EventArgs e)
         {
-            
             if (automatic_operation_chekbox.Checked)
             {
-                string downloadFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
-                try
+                watcher = CommonPart.StartWatcher(sender, e);
+                if (watcher != null)
                 {
-                    if (Directory.Exists(downloadFolderPath))
-                    {
-                        watcher = new FileSystemWatcher(downloadFolderPath);
-                        watcher.Filter = "*.pdf";
-                        watcher.Renamed += OnFileRenamed;
-                        watcher.Error += OnError;
-                        watcher.EnableRaisingEvents = true;
-                        MessageBox.Show("Figyelő elindult.");
-                    }
-                    else
-                    {
-                        throw new DirectoryNotFoundException("A letöltési mappa nem található.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Hiba történt: " + ex.Message); ///atirni 
+                    watcher.Renamed += OnFileRenamed;
+                    watcher.EnableRaisingEvents = true;
+                    MessageBox.Show("Figyelő elindult.");
                 }
             }
             else
             {
-                watcher.EnableRaisingEvents = true;
-                MessageBox.Show("Figyelő leállítva.");
+                if (watcher != null)
+                {
+                    watcher.EnableRaisingEvents = false;
+                    MessageBox.Show("Figyelő leállítva.");
+                }
             }
         }
 
@@ -76,24 +60,27 @@ namespace GLG
                     //folyatani
             }));
         }
-        private static void OnError(object sender, ErrorEventArgs e)
-        {
-            MessageBox.Show("Hiba: Figyelő leállt!");
-        }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-
+            facturpath = CommonPart.Filedialogpath();
+            string facturacontent = Retdata.pdfText(facturpath);
+            List<string> products = CommonPart.ProductList(facturacontent);
+            if(0 != products.Count)
+            {
+                MessageBox.Show("Factrua generalas");
+                RegeneredFactura.createFactura(facturacontent,products);
+            }
+            else
+            {
+                MessageBox.Show("Factrua Nyomtatas");
+            }
         }
 
         private void printing_button_Click(object sender, EventArgs e)
         {
-
+           // CommonPart.printer(/*genealasi file utvonala*/, printDuplex);
         }
 
-        private void Editor_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

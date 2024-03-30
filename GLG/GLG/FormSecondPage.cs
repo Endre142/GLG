@@ -190,5 +190,12 @@ namespace GLG
                 }
             }
         }
+
+        private void FormSecondPage_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Into_one.Show();
+        }
+
+   
     }
 }

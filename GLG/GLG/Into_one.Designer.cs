@@ -33,7 +33,6 @@
             this.printing_button = new System.Windows.Forms.Button();
             this.search_button = new System.Windows.Forms.Button();
             this.automatic_operation_chekbox = new System.Windows.Forms.CheckBox();
-            this.Editor = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pdfDocumentViewer1 = new Spire.PdfViewer.Forms.PdfDocumentViewer();
             this.pdfDocumentViewer2 = new Spire.PdfViewer.Forms.PdfDocumentViewer();
@@ -47,7 +46,6 @@
             this.panel1.Controls.Add(this.printing_button);
             this.panel1.Controls.Add(this.search_button);
             this.panel1.Controls.Add(this.automatic_operation_chekbox);
-            this.panel1.Controls.Add(this.Editor);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -62,7 +60,7 @@
             this.printing_button.FlatAppearance.BorderSize = 0;
             this.printing_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printing_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printing_button.Location = new System.Drawing.Point(0, 316);
+            this.printing_button.Location = new System.Drawing.Point(0, 240);
             this.printing_button.Name = "printing_button";
             this.printing_button.Size = new System.Drawing.Size(232, 76);
             this.printing_button.TabIndex = 4;
@@ -77,7 +75,7 @@
             this.search_button.FlatAppearance.BorderSize = 0;
             this.search_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.search_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_button.Location = new System.Drawing.Point(0, 240);
+            this.search_button.Location = new System.Drawing.Point(0, 164);
             this.search_button.Name = "search_button";
             this.search_button.Size = new System.Drawing.Size(232, 76);
             this.search_button.TabIndex = 3;
@@ -94,7 +92,7 @@
             this.automatic_operation_chekbox.FlatAppearance.BorderSize = 0;
             this.automatic_operation_chekbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.automatic_operation_chekbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.automatic_operation_chekbox.Location = new System.Drawing.Point(0, 165);
+            this.automatic_operation_chekbox.Location = new System.Drawing.Point(0, 89);
             this.automatic_operation_chekbox.Name = "automatic_operation_chekbox";
             this.automatic_operation_chekbox.Size = new System.Drawing.Size(232, 75);
             this.automatic_operation_chekbox.TabIndex = 2;
@@ -102,21 +100,6 @@
             this.automatic_operation_chekbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.automatic_operation_chekbox.UseVisualStyleBackColor = true;
             this.automatic_operation_chekbox.CheckedChanged += new System.EventHandler(this.automatic_operation_chekbox_CheckedChanged);
-            // 
-            // Editor
-            // 
-            this.Editor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Editor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Editor.FlatAppearance.BorderSize = 0;
-            this.Editor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Editor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Editor.Location = new System.Drawing.Point(0, 89);
-            this.Editor.Name = "Editor";
-            this.Editor.Size = new System.Drawing.Size(232, 76);
-            this.Editor.TabIndex = 1;
-            this.Editor.Text = "Szerkesztő";
-            this.Editor.UseVisualStyleBackColor = false;
-            this.Editor.Click += new System.EventHandler(this.Editor_Click);
             // 
             // pictureBox1
             // 
@@ -189,7 +172,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button Editor;
         private System.Windows.Forms.CheckBox automatic_operation_chekbox;
         private Spire.PdfViewer.Forms.PdfDocumentViewer pdfDocumentViewer1;
         private Spire.PdfViewer.Forms.PdfDocumentViewer pdfDocumentViewer2;

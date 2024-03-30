@@ -265,6 +265,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormSecondPage";
             this.Text = "FormSecondPage";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSecondPage_FormClosed);
             this.Load += new System.EventHandler(this.FormSecondPage_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

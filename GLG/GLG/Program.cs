@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuestPDF;
+using QuestPDF.Infrastructure;
 
 namespace GLG
 {
@@ -16,6 +19,7 @@ namespace GLG
         [STAThread]
         static void Main()
         {
+            Settings.License = LicenseType.Community;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new MainForm();

@@ -16,17 +16,15 @@ namespace GLG
         private string psf = "";
         private string data = "";
         private string client = "";
-        private List<string> products = new List<string>(); // products list;
+        private List<string> products=new List<string>();
         private string newPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GLG pdf-ek");
         private int pulsz = 4; // URES SOROK Reparati alatt
         private string wiever = null, facturapath = null;
         private  int volt;
         private bool new_page = true;
         private int sor = 4;
-        private bool run = false;
         private Form2 form2;
         private static List<string> constdata = new List<string>();
-        private string fullDownloadsPath;
         private FileSystemWatcher watcher = null;
         private static string[] filepaths = new string[]
         {
@@ -143,22 +141,13 @@ namespace GLG
                 textBox6.Text = data;
                 textBox7.Text = client;
 
-                string pattern = @"(\d+)\s([A-Za-z].*?),.*?([bB][uU][cC]\s(\d+))";
-                MatchCollection matches = Regex.Matches(pdfContent, pattern);
-
-                foreach (Match match in matches)
+                products=CommonPart.ProductList(pdfContent);
+                foreach (string product in products)
                 {
-                    if (!Regex.IsMatch((match.Groups[2].Value), @"(Reducere|SENZOR|Aprinder|aprindere|APRINDERE|Condensator|CONDENSATOR|condensator|Termostat|TERMOSTAT|termostat|Discount)"))
-                    {
-                        int product_number = Convert.ToInt32(match.Groups[3].Value.Substring(3));
-                        for (int i = 0; i < product_number; i++)
-                        {
-                            products.Add(match.Groups[2].Value);
-                            listBox1.Items.Add(match.Groups[2].Value);
-                        }
-                    }
+                    listBox1.Items.Add(product);    
                 }
-                if (products.Count() != 0)
+
+                    if (products.Count() != 0)
                 {
                     Retdata.Generator(psf, data, client, newPath, products, pulsz, ref wiever, new_page, constdata, logo_image_number);
                     pdfDocumentViewer1.LoadFromFile(wiever);
@@ -266,15 +255,21 @@ namespace GLG
             if (checkBox3.Checked)
             {
                 watcher = CommonPart.StartWatcher(sender, e);
-                watcher.Renamed += OnFileRenamed;
-                watcher.EnableRaisingEvents = true;
-                MessageBox.Show("Figyelő elindult.");
-
+                if (watcher != null)
+                {
+                    watcher.Renamed += OnFileRenamed;
+                    watcher.EnableRaisingEvents = true;
+                    MessageBox.Show("Figyelő elindult.");
+                }
             }
             else
             {
-                watcher.EnableRaisingEvents = false;
-                MessageBox.Show("Figyelő leállítva.");
+                if (watcher != null)
+                {
+                    watcher.EnableRaisingEvents = false;
+                    MessageBox.Show("Figyelő leállítva.");
+                }
+                  
             }
         }
         private void OnFileRenamed(object sender, FileSystemEventArgs e)
