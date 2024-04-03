@@ -69,7 +69,7 @@
             this.SecondPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SecondPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SecondPage.ForeColor = System.Drawing.Color.SlateGray;
-            this.SecondPage.Image = global::GLG.Properties.Resources.kicsi_2;
+            
             this.SecondPage.Location = new System.Drawing.Point(220, 0);
             this.SecondPage.Name = "SecondPage";
             this.SecondPage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -89,7 +89,7 @@
             this.FirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FirstPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FirstPage.ForeColor = System.Drawing.Color.SlateGray;
-            this.FirstPage.Image = global::GLG.Properties.Resources.kicsi_1;
+            
             this.FirstPage.Location = new System.Drawing.Point(0, 0);
             this.FirstPage.Name = "FirstPage";
             this.FirstPage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);

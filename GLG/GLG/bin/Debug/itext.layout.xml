@@ -1462,11 +1462,11 @@
             <returns>this Element.</returns>
         </member>
         <member name="M:iText.Layout.ElementPropertyContainer`1.SetFixedPosition(System.Single,System.Single,iText.Layout.Properties.UnitValue)">
-            <summary>Sets values for an absolute repositioning of the Element.</summary>
+            <summary>Sets values for a absolute repositioning of the Element.</summary>
             <remarks>
-            Sets values for an absolute repositioning of the Element.
+            Sets values for a absolute repositioning of the Element.
             The coordinates specified correspond to the
-            bottom-left corner of the element, and it grows upwards.
+            bottom-left corner of the element and it grows upwards.
             Also has as a side effect that the Element's
             <see cref="F:iText.Layout.Properties.Property.POSITION"/>
             is changed to
@@ -3586,16 +3586,6 @@
             </param>
             <returns>this list item.</returns>
         </member>
-        <member name="T:iText.Layout.Element.MulticolContainer">
-            <summary>represents a container of the column objects.</summary>
-        </member>
-        <member name="M:iText.Layout.Element.MulticolContainer.#ctor">
-            <summary>
-            Creates new
-            <see cref="T:iText.Layout.Element.MulticolContainer"/>
-            instance.
-            </summary>
-        </member>
         <member name="T:iText.Layout.Element.Paragraph">
             <summary>
             A layout element that represents a self-contained block of textual and
@@ -5310,10 +5300,6 @@
             a) bold
             b) italic
             </remarks>
-        </member>
-        <member name="M:iText.Layout.Font.FontSelector.PdfFontComparator.Family2Similarity(System.String,iText.Layout.Font.FontCharacteristics,iText.Layout.Font.FontInfo)">
-            <summary>This method is a fallback to compare family2 field if the main method wasn't able to prioritize the fonts.
-                </summary>
         </member>
         <member name="T:iText.Layout.Font.FontSelectorKey">
             <summary>
@@ -8828,45 +8814,6 @@
             <see cref="F:iText.Layout.Properties.Property.CLEAR"/>.
             </summary>
         </member>
-        <member name="T:iText.Layout.Properties.ContinuousContainer">
-            <summary>This class is used to store properties of the renderer that are needed to be removed/reapplied.</summary>
-            <remarks>
-            This class is used to store properties of the renderer that are needed to be removed/reapplied.
-            THis is used for processing continuous container property.
-            This behavior is used when we want to simulate a continuous appearance over multiple pages.
-            This means that only for the first and last page the margins, paddings and borders are applied.
-            On the first page the top properties are applied and on the last page the bottom properties are applied.
-            </remarks>
-        </member>
-        <member name="F:iText.Layout.Properties.ContinuousContainer.PROPERTIES_NEEDED_FOR_CONTINUOUS_CONTAINER">
-            <summary>Properties needed to be removed/added for continuous container.</summary>
-        </member>
-        <member name="M:iText.Layout.Properties.ContinuousContainer.#ctor(iText.Layout.Renderer.IRenderer)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.ContinuousContainer"/>
-            instance.
-            </summary>
-            <param name="renderer">the renderer that is used to get properties from.</param>
-        </member>
-        <member name="M:iText.Layout.Properties.ContinuousContainer.ClearPropertiesFromOverFlowRenderer(iText.Layout.IPropertyContainer)">
-            <summary>Removes properties from the overflow renderer that are not needed for continuous container.</summary>
-            <param name="overFlowRenderer">the renderer that is used to remove properties from.</param>
-        </member>
-        <member name="M:iText.Layout.Properties.ContinuousContainer.SetupContinuousContainerIfNeeded(iText.Layout.Renderer.AbstractRenderer)">
-            <summary>Sets up the needed values in the model element of the renderer.</summary>
-            <param name="blockRenderer">the renderer that is used to set up continuous container.</param>
-        </member>
-        <member name="M:iText.Layout.Properties.ContinuousContainer.ReApplyProperties(iText.Layout.Renderer.AbstractRenderer)">
-            <summary>Re adds the properties that were removed from the overflow renderer.</summary>
-            <param name="blockRenderer">the renderer that is used to reapply properties.</param>
-        </member>
-        <member name="T:iText.Layout.Properties.FlexDirectionPropertyValue">
-            <summary>
-            A specialized enum containing potential property values for
-            <see cref="F:iText.Layout.Properties.Property.FLEX_DIRECTION"/>.
-            </summary>
-        </member>
         <member name="T:iText.Layout.Properties.FlexWrapPropertyValue">
             <summary>
             A specialized enum containing potential property values for
@@ -8925,108 +8872,6 @@
             <see cref="T:iText.Layout.Element.IElement"/>
             representing symbol.
             </returns>
-        </member>
-        <member name="T:iText.Layout.Properties.InlineVerticalAlignment">
-            <summary>
-            A property corresponding to the css vertical-align property and used to
-            set vertical alignment on inline blocks, it specifies the  type of alignment
-            and where needed a numerical value to complete it.
-            </summary>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.#ctor">
-            <summary>
-            Creates a default InlineVerticalAlignment, it gets the type
-            <see cref="!:InlineVerticalAlignmentType?.BASELINE"/>.
-            </summary>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.#ctor(System.Nullable{iText.Layout.Properties.InlineVerticalAlignmentType})">
-            <summary>Creates an InlineVerticalAlignment with a specified type.</summary>
-            <param name="type">
-            
-            <see cref="!:InlineVerticalAlignmentType?"/>
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.#ctor(System.Nullable{iText.Layout.Properties.InlineVerticalAlignmentType},System.Single)">
-            <summary>Creates an InlineVerticalAlignment with a specified type and a value.</summary>
-            <remarks>
-            Creates an InlineVerticalAlignment with a specified type and a value.
-            This will throw a
-            <see cref="T:iText.Kernel.Exceptions.PdfException"/>
-            when used with a type that does not require a value.
-            </remarks>
-            <param name="type">
-            
-            <see cref="!:InlineVerticalAlignmentType?"/>
-            </param>
-            <param name="value">
-            In the case of
-            <see cref="!:InlineVerticalAlignmentType?.FIXED"/>
-            a lenth in pts,
-            in case of
-            <see cref="!:InlineVerticalAlignmentType?.FRACTION"/>
-            a multiplier value.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.GetType">
-            <summary>Gets the type of InlineVerticalAlignment.</summary>
-            <returns>
-            the type
-            <see cref="!:InlineVerticalAlignmentType?"/>
-            </returns>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.SetType(System.Nullable{iText.Layout.Properties.InlineVerticalAlignmentType})">
-            <summary>
-            Sets the type
-            <see cref="!:InlineVerticalAlignmentType?"/>.
-            </summary>
-            <param name="type">
-            
-            <see cref="!:InlineVerticalAlignmentType?"/>
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.GetValue">
-            <summary>Gets the value.</summary>
-            <returns>
-            value In the case of
-            <see cref="!:InlineVerticalAlignmentType?.FIXED"/>
-            a lenth in pts,
-            in case of
-            <see cref="!:InlineVerticalAlignmentType?.FRACTION"/>
-            a multiplier value.
-            </returns>
-        </member>
-        <member name="M:iText.Layout.Properties.InlineVerticalAlignment.SetValue(System.Single)">
-            <summary>Sets the value.</summary>
-            <param name="value">
-            In the case of
-            <see cref="!:InlineVerticalAlignmentType?.FIXED"/>
-            a lenth in pts,
-            in case of
-            <see cref="!:InlineVerticalAlignmentType?.FRACTION"/>
-            a multiplier value.
-            </param>
-        </member>
-        <member name="T:iText.Layout.Properties.InlineVerticalAlignmentType">
-            <summary>
-            The possible values for
-            <see cref="M:iText.Layout.Properties.InlineVerticalAlignment.GetType"/>.
-            </summary>
-        </member>
-        <member name="F:iText.Layout.Properties.InlineVerticalAlignmentType.FIXED">
-            <summary>Fixed is used when a length value is given in css.</summary>
-            <remarks>
-            Fixed is used when a length value is given in css.
-            It needs a companion value in
-            <see cref="M:iText.Layout.Properties.InlineVerticalAlignment.SetValue(System.Single)"/>
-            </remarks>
-        </member>
-        <member name="F:iText.Layout.Properties.InlineVerticalAlignmentType.FRACTION">
-            <summary>Fixed is used when a percentage value is given in css.</summary>
-            <remarks>
-            Fixed is used when a percentage value is given in css.
-            It needs a companion value in
-            <see cref="M:iText.Layout.Properties.InlineVerticalAlignment.SetValue(System.Single)"/>
-            </remarks>
         </member>
         <member name="T:iText.Layout.Properties.JustifyContent">
             <summary>
@@ -9460,18 +9305,6 @@
             , with the values of
             <see cref="T:iText.Layout.Properties.Property"/>
             as its potential keys.
-            </remarks>
-        </member>
-        <member name="F:iText.Layout.Properties.Property.DESTINATION">
-            <summary>
-            Can be either destination name (id) as String or
-            a Tuple2(String, PdfDictionary) where String is destination name (id) and PdfDictionary is a dictionary of
-            goto PdfAction.
-            </summary>
-            <remarks>
-            Can be either destination name (id) as String or
-            a Tuple2(String, PdfDictionary) where String is destination name (id) and PdfDictionary is a dictionary of
-            goto PdfAction. This second variant allow to create structure destination in tagged pdf.
             </remarks>
         </member>
         <member name="F:iText.Layout.Properties.Property.FONT">
@@ -10287,7 +10120,7 @@
             <param name="rect">a rectangle the border box will be applied on.</param>
             <param name="reverse">
             indicates whether the border box will be applied
-            inside (in case of false) or outside (in case of true) the rectangle.
+            inside (in case of false) or outside (in case of false) the rectangle.
             </param>
             <returns>
             a
@@ -10301,7 +10134,7 @@
             <param name="rect">a rectangle paddings will be applied on.</param>
             <param name="reverse">
             indicates whether paddings will be applied
-            inside (in case of false) or outside (in case of true) the rectangle.
+            inside (in case of false) or outside (in case of false) the rectangle.
             </param>
             <returns>
             a
@@ -10492,10 +10325,7 @@
             </returns>
         </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.GetMargins">
-            <summary>
-            Returns margins of the renderer
-            [0] - top; [1] - right; [2] - bottom; [3] - left
-            </summary>
+            <summary>Returns margins of the renderer</summary>
             <returns>
             a
             <c>float[]</c>
@@ -10503,10 +10333,7 @@
             </returns>
         </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.GetPaddings">
-            <summary>
-            Returns paddings of the renderer
-            [0] - top; [1] - right; [2] - bottom; [3] - left
-            </summary>
+            <summary>Returns paddings of the renderer</summary>
             <returns>
             a
             <c>float[]</c>
@@ -10519,7 +10346,7 @@
             <param name="paddings">the paddings to be applied on the given rectangle</param>
             <param name="reverse">
             indicates whether paddings will be applied
-            inside (in case of false) or outside (in case of true) the rectangle.
+            inside (in case of false) or outside (in case of false) the rectangle.
             </param>
             <returns>
             a
@@ -11172,37 +10999,7 @@
             to draw on
             </param>
         </member>
-        <member name="M:iText.Layout.Renderer.BlockRenderer.GetResolvedFont(iText.Kernel.Pdf.PdfDocument)">
-            <summary>
-            Get the font set in properties, if it is not set, then resolves the first
-            <see cref="T:iText.Kernel.Font.PdfFont"/>
-            from
-            <see cref="T:iText.Layout.Font.FontProvider"/>.
-            </summary>
-            <remarks>
-            Get the font set in properties, if it is not set, then resolves the first
-            <see cref="T:iText.Kernel.Font.PdfFont"/>
-            from
-            <see cref="T:iText.Layout.Font.FontProvider"/>.
-            If
-            <see cref="T:iText.Layout.Font.FontProvider"/>
-            is not set, then returns null.
-            </remarks>
-            <param name="pdfDocument">
-            the
-            <see cref="T:iText.Kernel.Pdf.PdfDocument"/>
-            to get default font from.
-            </param>
-            <returns>
-            the font or null if it is not set and
-            <see cref="T:iText.Layout.Font.FontProvider"/>
-            is not set.
-            </returns>
-        </member>
         <member name="M:iText.Layout.Renderer.BlockRenderer.GetMinMaxWidth">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.BottomToTopFlexItemMainDirector.ApplyDirectionForLine``1(System.Collections.Generic.IList{``0})">
             <summary><inheritDoc/></summary>
         </member>
         <member name="T:iText.Layout.Renderer.CanvasRenderer">
@@ -11489,12 +11286,6 @@
             <param name="customPageSize">the size of created pages, can be null</param>
             <returns>the page size of the last created page, or null if no page was created</returns>
         </member>
-        <member name="M:iText.Layout.Renderer.FlexColumnItemMainDirector.ApplyDirection(System.Collections.Generic.IList{System.Collections.Generic.IList{iText.Layout.Renderer.FlexItemInfo}})">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.FlexColumnItemMainDirector.ApplyDirectionForLine``1(System.Collections.Generic.IList{``0})">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="M:iText.Layout.Renderer.FlexContainerRenderer.#ctor(iText.Layout.Element.Div)">
             <summary>Creates a FlexContainerRenderer from its corresponding layout object.</summary>
             <param name="modelElement">
@@ -11529,37 +11320,14 @@
         <member name="M:iText.Layout.Renderer.FlexContainerRenderer.GetMinMaxWidth">
             <summary><inheritDoc/></summary>
         </member>
-        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.IsWrapReverse">
-            <summary>Check if flex container is wrapped reversely.</summary>
-            <returns>
-            
-            <see langword="true"/>
-            if flex-wrap property is set to wrap-reverse,
-            <see langword="false"/>
-            otherwise.
-            </returns>
-        </member>
         <member name="M:iText.Layout.Renderer.FlexContainerRenderer.CreateSplitAndOverflowRenderers(System.Int32,System.Int32,iText.Layout.Layout.LayoutResult,System.Collections.Generic.IDictionary{System.Int32,iText.Layout.Renderer.IRenderer},System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
             <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.FlexContainerRenderer.RecalculateOccupiedAreaAfterChildLayout(iText.Kernel.Geom.Rectangle,System.Nullable{System.Single})">
             <summary><inheritDoc/></summary>
         </member>
-        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.ApplyWrapReverse">
-            <summary>Apply wrap-reverse property.</summary>
-        </member>
         <member name="M:iText.Layout.Renderer.FlexContainerRenderer.AddChild(iText.Layout.Renderer.IRenderer)">
             <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.IsRowReverse">
-            <summary>Check if flex container direction is row reverse.</summary>
-            <returns>
-            
-            <see langword="true"/>
-            if flex-direction property is set to row-reverse,
-            <see langword="false"/>
-            otherwise.
-            </returns>
         </member>
         <member name="M:iText.Layout.Renderer.FlexUtil.CalculateChildrenRectangles(iText.Kernel.Geom.Rectangle,iText.Layout.Renderer.FlexContainerRenderer)">
             <summary>Performs flex layout algorithm.</summary>
@@ -11573,7 +11341,7 @@
             <param name="flexContainerRenderer">flex container's renderer</param>
             <returns>list of lines</returns>
         </member>
-        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateTransferredSizeSuggestion(System.Single)">
+        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateTransferredSizeSuggestion">
             <summary>
             If the item has an intrinsic aspect ratio and its computed cross size property is definite,
             then the transferred size suggestion is that size (clamped by its min and max cross size properties
@@ -11596,41 +11364,17 @@
             then the specified size suggestion is that size (clamped by its max main size property if it’s definite).
             It is otherwise undefined.
             </remarks>
-            <param name="flexContainerMainSize">the width of the flex container</param>
+            <param name="flexContainerWidth">the width of the flex container</param>
             <returns>specified size suggestion if it's definite, null otherwise</returns>
         </member>
-        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateContentSizeSuggestion(System.Single,System.Single)">
+        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateContentSizeSuggestion(System.Single)">
             <summary>
             The content size suggestion is the min-content size in the main axis, clamped, if it has an aspect ratio,
             by any definite min and max cross size properties converted through the aspect ratio,
             and then further clamped by the max main size property if that is definite.
             </summary>
-            <param name="flexContainerMainSize">the width of the flex container</param>
+            <param name="flexContainerWidth">the width of the flex container</param>
             <returns>content size suggestion</returns>
-        </member>
-        <member name="T:iText.Layout.Renderer.IFlexItemMainDirector">
-            <summary>Base interface to customize placing flex items on main flex direction.</summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.IFlexItemMainDirector.ApplyDirection(System.Collections.Generic.IList{System.Collections.Generic.IList{iText.Layout.Renderer.FlexItemInfo}})">
-            <summary>Apply the direction for placement the items in flex container.</summary>
-            <param name="lines">
-            flex lines calculated by
-            <see cref="T:iText.Layout.Renderer.FlexUtil"/>.
-            </param>
-            <returns>All child renderers in updated order.</returns>
-        </member>
-        <member name="M:iText.Layout.Renderer.IFlexItemMainDirector.ApplyDirectionForLine``1(System.Collections.Generic.IList{``0})">
-            <summary>Apply the direction for placement the items in flex line.</summary>
-            <param name="renderers">
-            list of renderers or
-            <see cref="T:iText.Layout.Renderer.FlexItemInfo"/>.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Renderer.IFlexItemMainDirector.ApplyJustifyContent(System.Collections.Generic.IList{iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo},iText.Layout.Properties.JustifyContent,System.Single)">
-            <summary>Apply alignment on main flex direction.</summary>
-            <param name="line">flex line of items to apply alignment to.</param>
-            <param name="justifyContent">alignment to apply.</param>
-            <param name="freeSpace">precalculated free space to distribute between flex items in a line.</param>
         </member>
         <member name="M:iText.Layout.Renderer.ILeafElementRenderer.GetAscent">
             <summary>
@@ -11845,16 +11589,6 @@
             </summary>
             <returns>new renderer instance</returns>
         </member>
-        <member name="M:iText.Layout.Renderer.LineHeightHelper.GetActualAscenderDescender(iText.Layout.Renderer.AbstractRenderer)">
-            <summary>Get actual ascender, descender.</summary>
-            <param name="renderer">the renderer to retrieve the ascender and descender from</param>
-            <returns>an array containing in this order actual ascender</returns>
-        </member>
-        <member name="M:iText.Layout.Renderer.LineHeightHelper.GetActualFontInfo(iText.Layout.Renderer.AbstractRenderer)">
-            <summary>Get actual ascender, descender, xHeight and leading.</summary>
-            <param name="renderer">the renderer to retrieve the font info from</param>
-            <returns>an array containing in this order actual ascender, descender, xHeight and leading</returns>
-        </member>
         <member name="M:iText.Layout.Renderer.LineRenderer.Length">
             <summary>Gets the total lengths of characters in this line.</summary>
             <remarks>
@@ -11872,8 +11606,7 @@
             <remarks>
             Calculates and sets encountered tab size.
             Returns null, if processing is finished and layout can be performed for the tab renderer;
-            otherwise, in case when the tab should be processed after the next element in the line,
-            this method returns corresponding tab stop.
+            otherwise, in case when the tab should be processed after the next element in the line, this method returns corresponding tab stop.
             </remarks>
         </member>
         <member name="M:iText.Layout.Renderer.LineRenderer.CalculateTab(iText.Kernel.Geom.Rectangle,System.Single,iText.Layout.Element.TabStop,System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer},iText.Layout.Renderer.IRenderer)">
@@ -12172,15 +11905,6 @@
             <see cref="T:iText.Layout.Layout.LayoutResult">layout result</see>
             </returns>
         </member>
-        <member name="T:iText.Layout.Renderer.LtrFlexItemMainDirector">
-            <summary>This class is responsible for left to right placement of flex items.</summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.LtrFlexItemMainDirector.ApplyDirection(System.Collections.Generic.IList{System.Collections.Generic.IList{iText.Layout.Renderer.FlexItemInfo}})">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.LtrFlexItemMainDirector.ApplyJustifyContent(System.Collections.Generic.IList{iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo},iText.Layout.Properties.JustifyContent,System.Single)">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="T:iText.Layout.Renderer.MetaInfoContainer">
             <summary>Class to store metaInfo that will be used for layout renderers.</summary>
         </member>
@@ -12191,86 +11915,6 @@
         <member name="M:iText.Layout.Renderer.MetaInfoContainer.GetMetaInfo">
             <summary>Return the IMetaInfo object.</summary>
             <returns>returns IMetaInfo</returns>
-        </member>
-        <member name="T:iText.Layout.Renderer.MulticolRenderer">
-            <summary>Represents a renderer for columns.</summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.#ctor(iText.Layout.Element.MulticolContainer)">
-            <summary>Creates a DivRenderer from its corresponding layout object.</summary>
-            <param name="modelElement">
-            the
-            <see cref="T:iText.Layout.Element.MulticolContainer"/>
-            which this object should manage
-            </param>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.SetHeightCalculator(iText.Layout.Renderer.MulticolRenderer.ColumnHeightCalculator)">
-            <summary>Sets the height calculator to be used by this renderer.</summary>
-            <param name="heightCalculator">the height calculator to be used by this renderer.</param>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.Layout(iText.Layout.Layout.LayoutContext)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.GetNextRenderer">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.DrawBorder(iText.Layout.Renderer.DrawContext)">
-            <summary>
-            Performs the drawing operation for the border of this renderer, if
-            defined by any of the
-            <see cref="F:iText.Layout.Properties.Property.BORDER"/>
-            values in either the layout
-            element or this
-            <see cref="T:iText.Layout.Renderer.IRenderer"/>
-            itself.
-            </summary>
-            <param name="drawContext">the context (canvas, document, etc) of this drawing operation.</param>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.CreateSplitRenderer(System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
-            <summary>Creates a split renderer.</summary>
-            <param name="children">children of the split renderer</param>
-            <returns>
-            a new
-            <see cref="T:iText.Layout.Renderer.AbstractRenderer"/>
-            instance
-            </returns>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.CreateOverflowRenderer(iText.Layout.Renderer.IRenderer)">
-            <summary>Creates an overflow renderer.</summary>
-            <param name="overflowedContentRenderer">an overflowed content renderer</param>
-            <returns>
-            a new
-            <see cref="T:iText.Layout.Renderer.AbstractRenderer"/>
-            instance
-            </returns>
-        </member>
-        <member name="T:iText.Layout.Renderer.MulticolRenderer.ColumnHeightCalculator">
-            <summary>Interface which used for additional height calculation</summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.ColumnHeightCalculator.GetAdditionalHeightOfEachColumn(iText.Layout.Renderer.MulticolRenderer,iText.Layout.Renderer.MulticolRenderer.MulticolLayoutResult)">
-            <summary>
-            Calculate height, by which current height of given
-            <c>MulticolRenderer</c>
-            should be increased so
-            <c>MulticolLayoutResult#getOverflowRenderer</c>
-            could be lauded
-            </summary>
-            <param name="renderer">multicol renderer for which height needs to be increased</param>
-            <param name="result">
-            result of one iteration of
-            <c>MulticolRenderer</c>
-            layouting
-            </param>
-            <returns>height by which current height of given multicol renderer should be increased</returns>
-        </member>
-        <member name="T:iText.Layout.Renderer.MulticolRenderer.MulticolLayoutResult">
-            <summary>
-            Represents result of one iteration of MulticolRenderer layouting
-            It contains split renderers which were lauded on a given height and overflow renderer
-            for which height should be increased, so it can be lauded.
-            </summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.MulticolRenderer.LayoutInInfiniteHeightCalculator.MaxAmountOfRelayouts">
-            <returns>maximum amount of relayouts which can be done by this height enhancer</returns>
         </member>
         <member name="T:iText.Layout.Renderer.Objectfit.ObjectFitApplyingResult">
             <summary>
@@ -12490,18 +12134,6 @@
             <see cref="M:iText.Layout.Renderer.AbstractRenderer.RetrieveWidth(System.Single)"/>
             in case it can not be calculated, or renderer isn't rotated.
             </returns>
-        </member>
-        <member name="T:iText.Layout.Renderer.RtlFlexItemMainDirector">
-            <summary>This class is responsible for right to left placement of flex items.</summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.RtlFlexItemMainDirector.ApplyDirection(System.Collections.Generic.IList{System.Collections.Generic.IList{iText.Layout.Renderer.FlexItemInfo}})">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.RtlFlexItemMainDirector.ApplyDirectionForLine``1(System.Collections.Generic.IList{``0})">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.RtlFlexItemMainDirector.ApplyJustifyContent(System.Collections.Generic.IList{iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo},iText.Layout.Properties.JustifyContent,System.Single)">
-            <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.TableBorderDescriptor.#ctor(System.Int32,System.Single,System.Single,System.Single[])">
             <summary>Creates a table border descriptor which will be used while drawing the described border.</summary>
@@ -13239,12 +12871,6 @@
             instance standing for the strategy to proceed with.
             </returns>
         </member>
-        <member name="M:iText.Layout.Renderer.TopToBottomFlexItemMainDirector.ApplyDirectionForLine``1(System.Collections.Generic.IList{``0})">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Renderer.TopToBottomFlexItemMainDirector.ApplyJustifyContent(System.Collections.Generic.IList{iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo},iText.Layout.Properties.JustifyContent,System.Single)">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="M:iText.Layout.Renderer.TypographyUtils.SetTypographyApplierInstance(iText.Layout.Renderer.Typography.AbstractTypographyApplier)">
             <summary>
             Set
@@ -13764,153 +13390,6 @@
             <see cref="T:iText.Layout.Tagging.IAccessibleElement"/>.
             </remarks>
             <returns>an interface that allows to specify properties of a tagged element in Tagged PDF.</returns>
-        </member>
-        <member name="T:iText.Layout.Tagging.ITaggingRule">
-            <summary>
-            Implementation of the interface is used to create required children
-            structure for the specified role.
-            </summary>
-            <remarks>
-            Implementation of the interface is used to create required children
-            structure for the specified role. E.g. table must have TRs as children.
-            </remarks>
-        </member>
-        <member name="M:iText.Layout.Tagging.ITaggingRule.OnTagFinish(iText.Layout.Tagging.LayoutTaggingHelper,iText.Layout.Tagging.TaggingHintKey)">
-            <summary>Action which creates required children structure for the role.</summary>
-            <param name="taggingHelper">tagging helper.</param>
-            <param name="taggingHintKey">element for which children structure will be created.</param>
-            <returns>
-            
-            <see langword="true"/>
-            if the structure was created successfully,
-            <see langword="false"/>
-            otherwise.
-            </returns>
-        </member>
-        <member name="T:iText.Layout.Tagging.LayoutTaggingHelper">
-            <summary>
-            The class is a helper which is used to correctly create structure
-            tree for layout element (with keeping right order for tags).
-            </summary>
-        </member>
-        <member name="T:iText.Layout.Tagging.TaggingDummyElement">
-            <summary>
-            Instances of the class are used for
-            <see cref="T:iText.Layout.Tagging.TaggingHintKey"/>
-            which don't have model element
-            e.g. TR or THEAD in the table.
-            </summary>
-            <remarks>
-            Instances of the class are used for
-            <see cref="T:iText.Layout.Tagging.TaggingHintKey"/>
-            which don't have model element
-            e.g. TR or THEAD in the table. Nobody will call
-            <see cref="M:iText.Layout.Tagging.LayoutTaggingHelper.FinishTaggingHint(iText.Layout.IPropertyContainer)"/>
-            for them, it is why they should be handled separately.
-            </remarks>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.#ctor(System.String)">
-            <summary>
-            Instantiate a new
-            <see cref="T:iText.Layout.Tagging.TaggingDummyElement"/>
-            instance.
-            </summary>
-            <param name="role">the role.</param>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.GetAccessibilityProperties">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.GetProperty``1(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.SetProperty(System.Int32,System.Object)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.HasProperty(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.HasOwnProperty(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.GetOwnProperty``1(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.GetDefaultProperty``1(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingDummyElement.DeleteOwnProperty(System.Int32)">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="T:iText.Layout.Tagging.TaggingHintKey">
-            <summary>
-            TaggingHintKey instances are created in the scope of
-            <see cref="M:iText.Layout.Renderer.RootRenderer.AddChild(iText.Layout.Renderer.IRenderer)"/>
-            to preserve logical order of layout elements from model elements.
-            </summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.#ctor(iText.Layout.Tagging.IAccessibleElement,System.Boolean)">
-            <summary>
-            Instantiate a new
-            <see cref="T:iText.Layout.Tagging.TaggingHintKey"/>
-            instance.
-            </summary>
-            <param name="elem">element this hint key will be created for.</param>
-            <param name="createdElementBased">
-            
-            <see langword="true"/>
-            if element implements
-            <see cref="T:iText.Layout.Element.IElement"/>.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.GetAccessibleElement">
-            <summary>Get accessible element.</summary>
-            <returns>the accessible element.</returns>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.IsFinished">
-            <summary>Retrieve hint key finished flag.</summary>
-            <returns>
-            
-            <see langword="true"/>
-            if hint key is finished,
-            <see langword="false"/>
-            otherwise.
-            </returns>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.SetFinished">
-            <summary>Set finished flag for hint key instance.</summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.IsArtifact">
-            <summary>Retrieve information whether this hint key is artifact or not.</summary>
-            <returns>
-            
-            <see langword="true"/>
-            if hint key corresponds to artifact,
-            <see langword="false"/>
-            otherwise.
-            </returns>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.SetArtifact">
-            <summary>Specify that hint key instance corresponds to artifact.</summary>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.GetOverriddenRole">
-            <summary>Get overridden role.</summary>
-            <returns>the overridden role.</returns>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.SetOverriddenRole(System.String)">
-            <summary>Set the overridden role.</summary>
-            <param name="overriddenRole">overridden role.</param>
-        </member>
-        <member name="M:iText.Layout.Tagging.TaggingHintKey.IsElementBasedFinishingOnly">
-            <summary>
-            Retrieve information whether the element backed by this hint key implements
-            <see cref="T:iText.Layout.Element.IElement"/>.
-            </summary>
-            <returns>
-            
-            <c/>
-            true if element implements
-            <see cref="T:iText.Layout.Element.IElement"/>.
-            </returns>
         </member>
     </members>
 </doc>

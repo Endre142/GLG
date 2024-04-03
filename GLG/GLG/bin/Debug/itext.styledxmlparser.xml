@@ -187,21 +187,6 @@
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_GAP">
             <summary>The Constant COLUMN_GAP.</summary>
         </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_RULE_WIDTH">
-            <summary>The Constant COLUMN_RULE_WIDTH.</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_RULE_STYLE">
-            <summary>The Constant COLUMN_RULE_STYLE.</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_RULE_COLOR">
-            <summary>The Constant COLUMN_RULE_COLOR.</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMNS">
-            <summary>The Constant COLUMNS</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_RULE">
-            <summary>The Constant COLUMNS</summary>
-        </member>
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.DARKEN">
             <summary>The Constant DARKEN.</summary>
         </member>
@@ -555,12 +540,6 @@
         </member>
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_REVERSE">
             <summary>The Constant COLUMN_REVERSE.</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_COUNT">
-            <summary>The Constant COLUMN_COUNT.</summary>
-        </member>
-        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.COLUMN_WIDTH">
-            <summary>The Constant COLUMN_WIDTH.</summary>
         </member>
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.CONTAIN">
             <summary>The Constant CONTAIN.</summary>
@@ -3154,6 +3133,105 @@
             <summary>Sets the quotes depth.</summary>
             <param name="quotesDepth">the new quotes depth</param>
         </member>
+        <member name="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode">
+            <summary><see cref="T:iText.StyledXmlParser.Node.IElementNode"/> implementation for content nodes.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.attributes">
+            <summary>The attributes</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.tagName">
+            <summary>The tag name</summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.#ctor(iText.StyledXmlParser.Node.INode,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>Creates a new <see cref="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode"/> instance.</summary>
+            <param name="parentNode">the parent node</param>
+            <param name="pseudoElementName">the pseudo element name</param>
+            <param name="attributes">the attributes</param>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Name">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.GetAttributes">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.GetAttribute(System.String)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.GetAdditionalHtmlStyles">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AddAdditionalHtmlStyles(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.GetLang">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes">
+            <summary>Simple <see cref="T:iText.StyledXmlParser.Node.IAttributes"/> implementation.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.attributes">
+            <summary>The attributes.</summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.#ctor(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>Creates a new <see cref="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes"/> instance.</summary>
+            <param name="attributes">the attributes</param>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.GetAttribute(System.String)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.SetAttribute(System.String,System.String)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.Size">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.GetEnumerator">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attributes.System#Collections#IEnumerable#GetEnumerator">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute">
+            <summary>Simple <see cref="T:iText.StyledXmlParser.Node.IAttributes"/> implementation.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute.entry">
+            <summary>The entry.</summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute.#ctor(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>Creates a new <see cref="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute"/> instance.</summary>
+            <param name="entry">the entry</param>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute.GetKey">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.Attribute.GetValue">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator">
+            <summary> <see cref="T:iText.StyledXmlParser.Node.IAttribute"/> iterator.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.iterator">
+            <summary>The iterator.</summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.#ctor(System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>Creates a new <see cref="T:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator"/> instance.</summary>
+            <param name="iterator">the iterator</param>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.Dispose">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.MoveNext">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.Reset">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="P:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.Current">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="P:iText.StyledXmlParser.Css.Resolve.CssContentElementNode.AttributeIterator.System#Collections#IEnumerator#Current">
+            <summary><inheritDoc/></summary>
+        </member>
         <member name="T:iText.StyledXmlParser.Css.Resolve.CssDefaults">
             <summary>Helper class that allows you to get the default values of CSS properties.</summary>
         </member>
@@ -3427,42 +3505,6 @@
             implementation for border widths.
             </summary>
         </member>
-        <member name="T:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnRuleShortHandResolver">
-            <summary>Shorthand resolver for the column-rule property.</summary>
-            <remarks>
-            Shorthand resolver for the column-rule property.
-            This property is a shorthand for the column-rule-width, column-rule-style, and column-rule-color  properties.
-            </remarks>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnRuleShortHandResolver.#ctor">
-            <summary>
-            Creates a new
-            <see cref="T:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnsShorthandResolver"/>
-            instance.
-            </summary>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnRuleShortHandResolver.ResolveShorthand(System.String)">
-            <summary>Resolves a shorthand expression.</summary>
-            <param name="shorthandExpression">the shorthand expression</param>
-            <returns>a list of CSS declaration</returns>
-        </member>
-        <member name="T:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnsShorthandResolver">
-            <summary>Shorthand resolver for the column property.</summary>
-            <remarks>
-            Shorthand resolver for the column property.
-            This property is a shorthand for the column-count and column-width properties.
-            </remarks>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnsShorthandResolver.#ctor">
-            <summary>
-            Creates a new
-            <see cref="T:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnsShorthandResolver"/>
-            instance.
-            </summary>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.ColumnsShorthandResolver.ResolveShorthand(System.String)">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.Impl.FlexFlowShorthandResolver.ResolveShorthand(System.String)">
             <summary><inheritDoc/></summary>
         </member>
@@ -3527,14 +3569,6 @@
         </member>
         <member name="T:iText.StyledXmlParser.Css.Resolve.Shorthand.IShorthandResolver">
             <summary>Interface for shorthand resolvers.</summary>
-            <remarks>
-            Interface for shorthand resolvers.
-            <para />
-            CSS shorthand is a group of CSS properties that allow values of multiple properties to be set simultaneously. These
-            values are separated by spaces. For example, the border property is shorthand for the border-width, border-style, and
-            border-color properties. So in CSS, border: 5px solid red; would specify a border that’s five px wide, solid, and
-            red.
-            </remarks>
         </member>
         <member name="M:iText.StyledXmlParser.Css.Resolve.Shorthand.IShorthandResolver.ResolveShorthand(System.String)">
             <summary>Resolves a shorthand expression.</summary>
@@ -4005,19 +4039,6 @@
             <param name="remValue">the root em value</param>
             <returns>the unit value</returns>
         </member>
-        <member name="M:iText.StyledXmlParser.Css.Util.CssDimensionParsingUtils.ParseLength(System.String,System.Single,System.Single,System.Single,System.Single)">
-            <summary>Parse length attributes.</summary>
-            <param name="length">
-            
-            <see cref="T:System.String"/>
-            for parsing
-            </param>
-            <param name="percentBaseValue">the value on which percent length is based on</param>
-            <param name="defaultValue">default value if length is not recognized</param>
-            <param name="fontSize">font size of the current element</param>
-            <param name="rootFontSize">root element font size</param>
-            <returns>absolute value in points</returns>
-        </member>
         <member name="M:iText.StyledXmlParser.Css.Util.CssDimensionParsingUtils.ParseAbsoluteFontSize(System.String,System.String)">
             <summary>Parses the absolute font size.</summary>
             <remarks>
@@ -4225,15 +4246,6 @@
             <summary>Checks whether a string matches a numeric value (e.g. 123, 1.23, .123).</summary>
             <remarks>
             Checks whether a string matches a numeric value (e.g. 123, 1.23, .123). All these metric values are allowed in
-            HTML/CSS.
-            </remarks>
-            <param name="value">the string that needs to be checked</param>
-            <returns>boolean true if value contains an allowed metric value</returns>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Util.CssTypesValidationUtils.IsIntegerNumber(System.String)">
-            <summary>Checks whether a string matches an integer numeric value (e.g. 123, 23).</summary>
-            <remarks>
-            Checks whether a string matches an integer numeric value (e.g. 123, 23). All these metric values are allowed in
             HTML/CSS.
             </remarks>
             <param name="value">the string that needs to be checked</param>
@@ -4644,24 +4656,6 @@
             For instance, the identifier "B&amp;W?" may be written as "B\&amp;W\?" or "B\26 W\3F".
             </remarks>
         </member>
-        <member name="T:iText.StyledXmlParser.Css.Validate.Impl.Datatype.CssIntegerNumberValueValidator">
-            <summary>
-            <see cref="T:iText.StyledXmlParser.Css.Validate.ICssDataTypeValidator"/>
-            implementation for integer numeric elements.
-            </summary>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Validate.Impl.Datatype.CssIntegerNumberValueValidator.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.StyledXmlParser.Css.Validate.Impl.Datatype.CssIntegerNumberValueValidator"/>
-            instance.
-            </summary>
-            <param name="allowedNegative">is negative value allowed</param>
-            <param name="allowedZero">is zero value allowed</param>
-        </member>
-        <member name="M:iText.StyledXmlParser.Css.Validate.Impl.Datatype.CssIntegerNumberValueValidator.IsValid(System.String)">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="T:iText.StyledXmlParser.Css.Validate.Impl.Datatype.CssLengthValueValidator">
             <summary>
             <see cref="T:iText.StyledXmlParser.Css.Validate.ICssDataTypeValidator"/>
@@ -4889,6 +4883,9 @@
             <param name="contentType">e.g. "text/html; charset=EUC-JP"</param>
             <returns>"EUC-JP", or null if not found. Charset is trimmed and uppercased.</returns>
         </member>
+        <member name="M:iText.StyledXmlParser.Jsoup.Helper.DataUtil.MimeBoundary">
+            <summary>Creates a random string, suitable for use as a mime boundary</summary>
+        </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Helper.Validate">
             <summary>Simple validation methods.</summary>
             <remarks>Simple validation methods. Designed for jsoup internal use</remarks>
@@ -5098,6 +5095,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Jsoup">
             <summary>The core public access point to the jsoup functionality.</summary>
+            <author>Jonathan Hedley</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Jsoup.Parse(System.String,System.String)">
             <summary>Parse HTML into a Document.</summary>
@@ -5414,6 +5412,7 @@
             normalized to lower-case on parsing. That means you should use lower-case strings when referring to attributes by
             name.
             </remarks>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Attributes.Get(System.String)">
             <summary>Get an attribute value by key.</summary>
@@ -5535,6 +5534,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.Comment">
             <summary>A comment node.</summary>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Comment.#ctor(System.String)">
             <summary>Create a new comment node.</summary>
@@ -5554,6 +5554,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.DataNode">
             <summary>A data node, for contents of style, script tags etc, where contents should not show in text().</summary>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.DataNode.#ctor(System.String)">
             <summary>Create a new DataNode.</summary>
@@ -5577,6 +5578,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.Document">
             <summary>A HTML Document.</summary>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Document.#ctor(System.String)">
             <summary>Create a new, empty Document.</summary>
@@ -5983,6 +5985,7 @@
             other elements).
             From an Element, you can extract data, traverse the node graph, and manipulate the HTML.
             </remarks>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.#ctor(System.String)">
             <summary>Create a new, standalone element.</summary>
@@ -7156,6 +7159,7 @@
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.Node">
             <summary>The base, abstract Node model.</summary>
             <remarks>The base, abstract Node model. Elements, Documents, Comments etc are all Node instances.</remarks>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Node.#ctor">
             <summary>Default constructor.</summary>
@@ -7553,6 +7557,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.TextNode">
             <summary>A text node.</summary>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.TextNode.#ctor(System.String)">
             <summary>Create a new TextNode representing the supplied (unencoded) text).</summary>
@@ -7703,6 +7708,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Parser.ParseErrorList">
             <summary>A container for ParseErrors.</summary>
+            <author>Jonathan Hedley</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.ParseErrorList.#ctor(iText.StyledXmlParser.Jsoup.Parser.ParseErrorList)">
             <summary>Create a new ParseErrorList with the same settings, but no errors in the list</summary>
@@ -7859,6 +7865,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Parser.Tag">
             <summary>HTML Tag capabilities.</summary>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.Tag.GetName">
             <summary>Get this tag's name.</summary>
@@ -7971,6 +7978,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Parser.TokenQueue">
             <summary>A character queue with parsing helpers.</summary>
+            <author>Jonathan Hedley</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.#ctor(System.String)">
             <summary>Create a new TokenQueue.</summary>
@@ -8118,6 +8126,9 @@
             <summary>Consume and return whatever is left on the queue.</summary>
             <returns>remained of queue.</returns>
         </member>
+        <member name="T:iText.StyledXmlParser.Jsoup.Parser.TreeBuilder">
+            <author>Jonathan Hedley</author>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.TreeBuilder.NewInstance">
             <summary>Create a new copy of this TreeBuilder</summary>
             <returns>copy, ready for a new parse</returns>
@@ -8149,6 +8160,7 @@
             Usage example:
             <c>Document xmlDoc = Jsoup.parse(html, baseUrl, Parser.xmlParser());</c>
             </remarks>
+            <author>Jonathan Hedley</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.XmlTreeBuilder.PopStackToClose(iText.StyledXmlParser.Jsoup.Parser.Token.EndTag)">
             <summary>If the stack contains an element with this tag's name, pop up the stack to remove the first occurrence.
@@ -8492,6 +8504,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Select.Collector">
             <summary>Collects a list of elements that match the supplied criteria.</summary>
+            <author>Jonathan Hedley</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Select.Collector.Collect(iText.StyledXmlParser.Jsoup.Select.Evaluator,iText.StyledXmlParser.Jsoup.Nodes.Element)">
             <summary>Build a list of elements, by visiting root and every descendant of root, and testing it against the evaluator.
@@ -8539,6 +8552,7 @@
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Select(System.String)"/>
             method.
             </remarks>
+            <author>Jonathan Hedley, jonathan@hedley.net</author>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Select.Elements.Clone">
             <summary>Creates a deep copy of these elements.</summary>
@@ -9050,6 +9064,7 @@
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Select.Evaluator.IndexEvaluator">
             <summary>Abstract evaluator for sibling index matching</summary>
+            <author>ant</author>
         </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Select.Evaluator.ContainsText">
             <summary>Evaluator for matching Element (and its descendants) text</summary>

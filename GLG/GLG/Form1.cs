@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,10 +16,10 @@ namespace GLG
         private string data = "";
         private string client = "";
         private List<string> products=new List<string>();
-        private string newPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GLG pdf-ek");
-        private int pulsz = 4; // URES SOROK Reparati alatt
+        private int pulsz = 4;
         private string wiever = null, facturapath = null;
-        private  int volt;
+        private string newPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GLG pdf-ek");
+        private int volt;
         private bool new_page = true;
         private int sor = 4;
         private Form2 form2;
@@ -108,7 +107,6 @@ namespace GLG
             }
 
         }
-
         private void button5_Click_1(object sender, EventArgs e)
         {
             if (form2 == null || form2.IsDisposed)
@@ -123,7 +121,8 @@ namespace GLG
         private void button1_Click(object sender, EventArgs e)
         {
             finishclear();
-            facturapath=CommonPart.Filedialogpath();
+            facturapath = CommonPart.Filedialogpath();
+   
             if (facturapath!=null)
             {
                 Data_scanning(facturapath);
@@ -180,7 +179,7 @@ namespace GLG
         }
         private void First3_Data()
         {
-            string psfPattern = @"Factura PSF (\d+)";
+            string psfPattern = @"PSF (\d+)";
             string issueDatePattern = @"Data emiterii: (\d{2}.\d{2}.\d{4})";
             string clientNamePattern = @"POLTHERM SYSTEM SRL\s*([^\n]+)";
 

@@ -64,17 +64,22 @@ namespace GLG
         private void search_button_Click(object sender, EventArgs e)
         {
             facturpath = CommonPart.Filedialogpath();
-            string facturacontent = Retdata.pdfText(facturpath);
-            List<string> products = CommonPart.ProductList(facturacontent);
-            if(0 != products.Count)
+            if (facturpath != null)
             {
-                MessageBox.Show("Factrua generalas");
-                RegeneredFactura.createFactura(facturacontent,products);
+                string facturacontent = Retdata.pdfText(facturpath);
+                List<string> products = CommonPart.ProductList(facturacontent);
+                if (0 != products.Count)
+                {
+
+                    RegeneredFactura.createFactura(facturacontent, products);
+                    pdfDocumentViewer1.LoadFromFile("factura.pdf");
+                }
+                else
+                {
+                    MessageBox.Show("Factrua Nyomtatas");
+                }
             }
-            else
-            {
-                MessageBox.Show("Factrua Nyomtatas");
-            }
+            
         }
 
         private void printing_button_Click(object sender, EventArgs e)

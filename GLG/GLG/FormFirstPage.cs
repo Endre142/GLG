@@ -101,11 +101,11 @@ namespace GLG
 
             if (Convert.ToBoolean(Convert.ToInt16(constData[15])))
             {
-                imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "image", "con_log.jpg");
+                imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources","image", "con_log.jpg");
             }
             else
             {
-                imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "image", "kazandepo.png");
+                imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "image", "kazandepo.png");
             }
             ImageData imageData = ImageDataFactory.Create(imagePath);
             iText.Layout.Element.Image image = new iText.Layout.Element.Image(imageData).ScaleAbsolute(fitWidth: 200, fitHeight: 60);

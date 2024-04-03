@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.into_one = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.separately = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,20 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.UseMnemonic = false;
             // 
+            // into_one
+            // 
+            this.into_one.BackColor = System.Drawing.Color.White;
+            this.into_one.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.into_one.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.into_one.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.into_one.Image = global::GLG.Properties.Resources.kicsi_1_1_;
+            this.into_one.Location = new System.Drawing.Point(516, 250);
+            this.into_one.Name = "into_one";
+            this.into_one.Size = new System.Drawing.Size(129, 166);
+            this.into_one.TabIndex = 3;
+            this.into_one.UseVisualStyleBackColor = false;
+            this.into_one.Click += new System.EventHandler(this.into_one_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::GLG.Properties.Resources.icon;
@@ -76,28 +90,14 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // into_one
-            // 
-            this.into_one.BackColor = System.Drawing.Color.White;
-            this.into_one.BackgroundImage = global::GLG.Properties.Resources.kicsi_1_1_;
-            this.into_one.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.into_one.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.into_one.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.into_one.Location = new System.Drawing.Point(516, 250);
-            this.into_one.Name = "into_one";
-            this.into_one.Size = new System.Drawing.Size(129, 166);
-            this.into_one.TabIndex = 3;
-            this.into_one.UseVisualStyleBackColor = false;
-            this.into_one.Click += new System.EventHandler(this.into_one_Click);
-            // 
             // separately
             // 
             this.separately.BackColor = System.Drawing.Color.White;
-            this.separately.BackgroundImage = global::GLG.Properties.Resources.kicsi_2_1_;
             this.separately.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.separately.Cursor = System.Windows.Forms.Cursors.Hand;
             this.separately.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.separately.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.separately.Image = global::GLG.Properties.Resources.kicsi_2_1_;
             this.separately.Location = new System.Drawing.Point(167, 250);
             this.separately.Name = "separately";
             this.separately.Size = new System.Drawing.Size(129, 166);

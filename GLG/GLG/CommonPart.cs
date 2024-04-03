@@ -64,13 +64,18 @@ namespace GLG
         public static void printer(string filepath,bool printDuplex)
         { 
             Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
-            doc.LoadFromFile(filepath);
-            bool canDuplex = doc.PrintSettings.CanDuplex;
-            if (canDuplex && printDuplex)
+
+            if (filepath != null)
             {
-                doc.PrintSettings.Duplex = System.Drawing.Printing.Duplex.Vertical;
+                doc.LoadFromFile(filepath);
+                bool canDuplex = doc.PrintSettings.CanDuplex;
+                if (canDuplex && printDuplex)
+                {
+                    doc.PrintSettings.Duplex = System.Drawing.Printing.Duplex.Vertical;
+                }
+                doc.Print();
             }
-            doc.Print();
+            
         }
         public static List<string> ProductList(string pdfContent) {
             List<string> product = new List<string>();

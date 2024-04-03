@@ -30,7 +30,7 @@ namespace GLG
 
             try
             {
-                var pdfDocument = new PdfDocument(new PdfReader(path));
+                PdfDocument pdfDocument = new PdfDocument(new PdfReader(path));
                 var page = pdfDocument.GetPage(1);
                 var reader = new LocationTextExtractionStrategy();
                 string text = string.Empty;
@@ -73,11 +73,11 @@ namespace GLG
                 string imagePath;
                 if (Convert.ToBoolean(logo_image_number))
                 {
-                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "image", "con_log.jpg");
+                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "image", "con_log.jpg");
                 }
                 else
                 {
-                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "image", "kazandepo.png");
+                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "image", "kazandepo.png");
                 }
 
 
