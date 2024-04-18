@@ -35,7 +35,8 @@
             this.automatic_operation_chekbox = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pdfDocumentViewer1 = new Spire.PdfViewer.Forms.PdfDocumentViewer();
-            this.pdfDocumentViewer2 = new Spire.PdfViewer.Forms.PdfDocumentViewer();
+            this.autoPrint = new System.Windows.Forms.CheckBox();
+            this.saveButtom = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +44,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Controls.Add(this.saveButtom);
+            this.panel1.Controls.Add(this.autoPrint);
             this.panel1.Controls.Add(this.printing_button);
             this.panel1.Controls.Add(this.search_button);
             this.panel1.Controls.Add(this.automatic_operation_chekbox);
@@ -50,7 +53,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(232, 450);
+            this.panel1.Size = new System.Drawing.Size(232, 572);
             this.panel1.TabIndex = 0;
             // 
             // printing_button
@@ -130,30 +133,44 @@
             this.pdfDocumentViewer1.ZoomFactor = 1F;
             this.pdfDocumentViewer1.ZoomMode = Spire.PdfViewer.Forms.ZoomMode.Default;
             // 
-            // pdfDocumentViewer2
+            // autoPrint
             // 
-            this.pdfDocumentViewer2.AutoScroll = true;
-            this.pdfDocumentViewer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.pdfDocumentViewer2.FormFillEnabled = false;
-            this.pdfDocumentViewer2.Location = new System.Drawing.Point(596, 127);
-            this.pdfDocumentViewer2.MultiPagesThreshold = 60;
-            this.pdfDocumentViewer2.Name = "pdfDocumentViewer2";
-            this.pdfDocumentViewer2.OnRenderPageExceptionEvent = null;
-            this.pdfDocumentViewer2.PageLayoutMode = Spire.PdfViewer.Forms.PageLayoutMode.SinglePageContinuous;
-            this.pdfDocumentViewer2.Size = new System.Drawing.Size(177, 197);
-            this.pdfDocumentViewer2.TabIndex = 2;
-            this.pdfDocumentViewer2.Text = "pdfDocumentViewer2";
-            this.pdfDocumentViewer2.Threshold = 60;
-            this.pdfDocumentViewer2.ViewerMode = Spire.PdfViewer.Forms.PdfViewerMode.PdfViewerMode.MultiPage;
-            this.pdfDocumentViewer2.ZoomFactor = 1F;
-            this.pdfDocumentViewer2.ZoomMode = Spire.PdfViewer.Forms.ZoomMode.Default;
+            this.autoPrint.Appearance = System.Windows.Forms.Appearance.Button;
+            this.autoPrint.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.autoPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.autoPrint.Dock = System.Windows.Forms.DockStyle.Top;
+            this.autoPrint.FlatAppearance.BorderSize = 0;
+            this.autoPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.autoPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoPrint.Location = new System.Drawing.Point(0, 316);
+            this.autoPrint.Name = "autoPrint";
+            this.autoPrint.Size = new System.Drawing.Size(232, 75);
+            this.autoPrint.TabIndex = 5;
+            this.autoPrint.Text = "Auto. Nyomtatás";
+            this.autoPrint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.autoPrint.UseVisualStyleBackColor = true;
+            this.autoPrint.CheckedChanged += new System.EventHandler(this.autoPrint_CheckedChanged);
+            // 
+            // saveButtom
+            // 
+            this.saveButtom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveButtom.Dock = System.Windows.Forms.DockStyle.Top;
+            this.saveButtom.FlatAppearance.BorderSize = 0;
+            this.saveButtom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButtom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButtom.Location = new System.Drawing.Point(0, 391);
+            this.saveButtom.Name = "saveButtom";
+            this.saveButtom.Size = new System.Drawing.Size(232, 76);
+            this.saveButtom.TabIndex = 6;
+            this.saveButtom.Text = "Mentés";
+            this.saveButtom.UseVisualStyleBackColor = false;
+            this.saveButtom.Click += new System.EventHandler(this.saveButtom_Click);
             // 
             // Into_one
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pdfDocumentViewer2);
+            this.ClientSize = new System.Drawing.Size(800, 572);
             this.Controls.Add(this.pdfDocumentViewer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -174,8 +191,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox automatic_operation_chekbox;
         private Spire.PdfViewer.Forms.PdfDocumentViewer pdfDocumentViewer1;
-        private Spire.PdfViewer.Forms.PdfDocumentViewer pdfDocumentViewer2;
         private System.Windows.Forms.Button search_button;
         private System.Windows.Forms.Button printing_button;
+        private System.Windows.Forms.CheckBox autoPrint;
+        private System.Windows.Forms.Button saveButtom;
     }
 }

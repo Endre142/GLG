@@ -23,7 +23,7 @@ namespace GLG
         private bool new_page = true;
         private int sor = 4;
         private Form2 form2;
-        private static List<string> constdata = new List<string>();
+        private static List<string> constdata;
         private FileSystemWatcher watcher = null;
         private static string[] filepaths = new string[]
         {
@@ -32,6 +32,7 @@ namespace GLG
              "..//..//files//ConstData.txt",
              "..//..//files//clear.pdf"
         };
+        private bool automaticalPrint = false;
 
         public Form1()
         {
@@ -51,30 +52,10 @@ namespace GLG
         }
         public static void ConstDataReader()
         {
-            if (constdata.Count != 0)
-            {
-                constdata.Clear();
-            }
-
-            if (File.Exists(filepaths[2]))
-            {
-                using (StreamReader reader = new StreamReader(filepaths[2]))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        constdata.Add(line);
-                    }
-                    reader.Close();
-                }
-                setLogoImagenumber(Convert.ToInt16(constdata[15]));  
-
-            }
-            else
-            {
-                MessageBox.Show("Elso olvasa meghiusult form1");
-                setLogoImagenumber(0);
-            }
+            int logonumber = 0;
+            constdata = CommonPart.DataReader(filepaths[2],ref logonumber);
+            setLogoImagenumber(logonumber);
+            
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
@@ -122,12 +103,26 @@ namespace GLG
         {
             finishclear();
             facturapath = CommonPart.Filedialogpath();
-   
-            if (facturapath!=null)
+            bool printEvent=false;
+            if(facturapath!=null)
             {
                 Data_scanning(facturapath);
+                if(automaticalPrint&&wiever!=null)
+                {
+                    button4_Click_1(sender,e);
+                    printEvent=true;
+                }
+                if(products.Count==0 && !printEvent)
+                {
+                    pdfDocumentViewer1.LoadFromFile(facturapath);
+                    if(automaticalPrint)
+                    {
+                        button4_Click_1(sender,e);
+                    }
+
+                }
+
             }
-            
         }
         void Data_scanning(string filepath)
         {
@@ -146,7 +141,7 @@ namespace GLG
                     listBox1.Items.Add(product);    
                 }
 
-                    if (products.Count() != 0)
+                if (products.Count() != 0)
                 {
                     Retdata.Generator(psf, data, client, newPath, products, pulsz, ref wiever, new_page, constdata, logo_image_number);
                     pdfDocumentViewer1.LoadFromFile(wiever);
@@ -299,12 +294,22 @@ namespace GLG
                 }
             }));
         }
-
-       
-
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.GetMainForm().Show();
+        }
+        private void checkBox2_CheckedChanged(object sender,EventArgs e)
+        {
+            if(checkBox2.Checked)
+            {
+                automaticalPrint=true;
+                MessageBox.Show("Atomatikus nyomtatás elindult.");
+            }
+            else
+            {
+                automaticalPrint = false;
+                MessageBox.Show("Automatikus nyomtata leállítva.");
+            }
         }
 
         private void finishclear()

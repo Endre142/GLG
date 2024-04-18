@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Spire;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace GLG
 {
     internal class CommonPart
@@ -97,6 +98,35 @@ namespace GLG
             }
 
             return product;
+        }
+        public static List<string> DataReader(string path,ref int  logonumber)
+        {
+            List<string> constdata = new List<string>();
+            if(constdata.Count!=0)
+            {
+                constdata.Clear();
+            }
+
+            if(File.Exists(path))
+            {
+                using(StreamReader reader = new StreamReader(path))
+                {
+                    string line;
+                    while((line=reader.ReadLine())!=null)
+                    {
+                        constdata.Add(line);
+                    }
+                    reader.Close();
+                }
+                logonumber=Convert.ToInt16(constdata[15]);
+
+            }
+            else
+            {
+                MessageBox.Show("Elso olvasa meghiusult form1");
+                logonumber=0;
+            }
+            return constdata;
         }
     }
 }

@@ -14,12 +14,6 @@ using System;
 using iText.Layout.Renderer;
 using iText.Layout.Layout;
 
-
-
-
-
-
-
 namespace GLG
 {
     internal class RegeneredFactura
@@ -48,67 +42,67 @@ namespace GLG
                                         "Website:",
                                         " www.centraletekla.ro / www.controler-e.ro"
         };
-        public static void createFactura(string facturacontent, List<string> productList)
+        public static void createFactura(string facturacontent,List<string> productList)
         {
-            string cliensData = facturacontent.Substring(facturacontent.IndexOf("POLTHERM SYSTEM SRL ") + 19);
-            CliensDataTabel data = new CliensDataTabel(ExtractTabelData(cliensdata(cliensData.Substring(0, cliensData.IndexOf("Pret unitar Valoare TVA")))));
-            string[] necessaryDatas = necessaryDateSearch(facturacontent.Substring(0, facturacontent.IndexOf("Furnizor:")));
-            int firstPozitionProdTable = facturacontent.IndexOf("(RON) (RON)") + 11;
+            string cliensData = facturacontent.Substring(facturacontent.IndexOf("POLTHERM SYSTEM SRL ")+19);
+            CliensDataTabel data = new CliensDataTabel(ExtractTabelData(cliensdata(cliensData.Substring(0,cliensData.IndexOf("Pret unitar Valoare TVA")))));
+            string[] necessaryDatas = necessaryDateSearch(facturacontent.Substring(0,facturacontent.IndexOf("Furnizor:")));
+            int firstPozitionProdTable = facturacontent.IndexOf("(RON) (RON)")+11;
             string lastPozitionProdTable;
-            if (facturacontent.IndexOf("Marfa")!=-1)
+            if(facturacontent.IndexOf("Marfa")!=-1)
             {
-                lastPozitionProdTable = "Marfa";
-                
+                lastPozitionProdTable="Marfa";
+
             }
             else
             {
-                lastPozitionProdTable = "Intocmit";
+                lastPozitionProdTable="Intocmit";
             }
-            string tabelData = facturacontent.Substring(firstPozitionProdTable, facturacontent.IndexOf(lastPozitionProdTable) - firstPozitionProdTable);
+            string tabelData = facturacontent.Substring(firstPozitionProdTable,facturacontent.IndexOf(lastPozitionProdTable)-firstPozitionProdTable);
             List<string> pruductTableData = productsElemet(tabelData);
             /**************************************/
             float vertycalLastPozition = 0;
             /**************************************/
             /****************************************Create factura pdf *********************************************************/
             string pdfpath = "factura.pdf";
-            using (PdfWriter writer = new PdfWriter(pdfpath))
-            { 
+            using(PdfWriter writer = new PdfWriter(pdfpath))
+            {
                 PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf, PageSize.A4);
-                document.SetMargins(30f, 30f, 30f, 30f);
+                Document document = new Document(pdf,PageSize.A4);
+                document.SetMargins(30f,30f,30f,30f);
                 string fontPath2 = @"C:\Windows\Fonts\arial.ttf";
-                PdfFont f = PdfFontFactory.CreateFont(fontPath2, PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
-        /*************************************************** Title and logo *********************************************************/
+                PdfFont f = PdfFontFactory.CreateFont(fontPath2,PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+                /*************************************************** Title and logo *********************************************************/
                 Table mainTable = new Table(2);
                 float tableHeight = 80;
-                vertycalLastPozition += tableHeight;
+                vertycalLastPozition+=tableHeight;
 
-                float tableWidth = PageSize.A4.GetWidth() - 60;
+                float tableWidth = PageSize.A4.GetWidth()-60;
                 mainTable.SetWidth(tableWidth);
                 mainTable.SetHeight(tableHeight);
                 Image image = new Image(ImageDataFactory.Create("../../Resources/image/poltherm_logo.png"));
-                Cell cell1 = new Cell().SetWidth(tableWidth / 2.0f - 50).SetBorder(Border.NO_BORDER);
+                Cell cell1 = new Cell().SetWidth(tableWidth/2.0f-50).SetBorder(Border.NO_BORDER);
                 cell1.Add(image.SetAutoScale(true));
                 mainTable.AddCell(cell1);
 
                 Table secondTable = new Table(1);
-                secondTable.SetWidth(tableWidth / 2.0f + 45);
+                secondTable.SetWidth(tableWidth/2.0f+45);
                 secondTable.SetHeight(tableHeight);
                 secondTable.SetBorderCollapse(BorderCollapsePropertyValue.COLLAPSE);
                 int font = 15;
                 Text factura = new Text("FACTURA").SetFontColor(DeviceRgb.WHITE).SetBold().SetFont(f).SetFontSize(font);
-                Text Pfs = new Text("PSF" + necessaryDatas[0]).SetFontColor(DeviceRgb.WHITE).SetBold().SetFont(f).SetFontSize(font);
+                Text Pfs = new Text("PSF"+necessaryDatas[0]).SetFontColor(DeviceRgb.WHITE).SetBold().SetFont(f).SetFontSize(font);
 
 
                 Table tab2 = new Table(2);
-                tab2.SetWidth(secondTable.GetWidth().GetValue() - 5);
+                tab2.SetWidth(secondTable.GetWidth().GetValue()-5);
                 Cell facturas = new Cell().Add(new Paragraph(factura).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER);
                 tab2.AddCell(facturas);
                 Cell pfs = new Cell().Add(new Paragraph(Pfs).SetTextAlignment(TextAlignment.RIGHT)).SetBorder(Border.NO_BORDER);
                 tab2.AddCell(pfs);
 
                 Cell cell2_1 = new Cell().Add(tab2)
-                                          .SetHeight(tableHeight / 2 - 15);
+                                          .SetHeight(tableHeight/2-15);
 
                 cell2_1.SetBorder(Border.NO_BORDER);
                 cell2_1.SetBackgroundColor(DeviceRgb.RED).SetBorder(Border.NO_BORDER);
@@ -117,7 +111,7 @@ namespace GLG
                 Text t1 = new Text("Data emiterii: ").SetBold().SetFont(f).SetFontSize(k);
                 Text t2 = new Text(necessaryDatas[1]).SetFontSize(k);
                 Text t3 = new Text(" TVA la incasare ").SetBold().SetFont(f).SetFontSize(k);
-                Text t4 = new Text("(" + necessaryDatas[2] + ")").SetFontSize(k);
+                Text t4 = new Text("("+necessaryDatas[2]+")").SetFontSize(k);
                 Text t5 = new Text("Termen plata: ").SetBold().SetFont(f).SetFontSize(k);
                 Text t6 = new Text(necessaryDatas[3]).SetFontSize(k);
 
@@ -132,7 +126,7 @@ namespace GLG
 
                 Cell cell2_2 = new Cell().Add(a).Add(b);
                 cell2_2.SetBorder(Border.NO_BORDER);
-                cell2_2.SetHeight(tableHeight / 2 + 15);
+                cell2_2.SetHeight(tableHeight/2+15);
 
                 secondTable.AddCell(cell2_2);
 
@@ -142,18 +136,18 @@ namespace GLG
                 document.Add(mainTable);
 
 
-        /*************************************************** buyer and seller data *********************************************************/
+                /*************************************************** buyer and seller data *********************************************************/
                 Table bstable = new Table(2);
                 bstable.SetWidth(tableWidth);
                 bstable.SetHeight(180); // buyer and seller TABLE HEIGHT
-                vertycalLastPozition += 180;
+                vertycalLastPozition+=180;
                 Text fur = new Text("Furnizor: ").SetBold().SetFont(f).SetFontSize(8);
                 Text name = new Text("POLTHERM SYSTEM SRL").SetBold().SetFont(f).SetFontSize(10);
                 Paragraph furname = new Paragraph().Add(fur);
                 Paragraph namePar = new Paragraph().Add(name);
                 Cell seller = new Cell().Add(furname)
                                         .Add(namePar)
-                                        .SetWidth(bstable.GetWidth().GetValue() / 2f)
+                                        .SetWidth(bstable.GetWidth().GetValue()/2f)
                                         .SetBorder(Border.NO_BORDER);
                 Text client = new Text("Client: ").SetBold().SetFont(f).SetFontSize(8);
                 Text clientname = new Text(data.Name).SetBold().SetFont(f).SetFontSize(10);
@@ -163,19 +157,19 @@ namespace GLG
                                         .Add(nameClien)
                                         .SetBorder(Border.NO_BORDER);
 
-        /*************************************************** seller table *********************************************************/
+                /*************************************************** seller table *********************************************************/
                 Table selerData = new Table(2);
-                selerData.SetWidth(bstable.GetWidth().GetValue() / 2.0f).SetBorder(Border.NO_BORDER);
+                selerData.SetWidth(bstable.GetWidth().GetValue()/2.0f).SetBorder(Border.NO_BORDER);
 
-                Cell listed = new Cell().SetWidth(TeklaData[18].Length + 40).SetBorder(Border.NO_BORDER);
-                for (int i = 0; i < TeklaData.Length - 1; i += 2)
+                Cell listed = new Cell().SetWidth(TeklaData[18].Length+40).SetBorder(Border.NO_BORDER);
+                for(int i = 0;i<TeklaData.Length-1;i+=2)
                 {
-                    if (i == 6)
+                    if(i==6)
                     {
 
                         listed.Add(new Paragraph().Add(new Text("\n").SetBold().SetFont(f).SetFontSize(8)));
                     }
-                    else if (i != 20)
+                    else if(i!=20)
                     {
                         listed.Add(new Paragraph(TeklaData[i]).SetBold().SetFont(f).SetFontSize(8));
                     }
@@ -187,12 +181,12 @@ namespace GLG
                 }
 
                 Cell teklaData = new Cell().SetBorder(Border.NO_BORDER);
-                for (int i = 1; i < TeklaData.Length; i += 2)
+                for(int i = 1;i<TeklaData.Length;i+=2)
                 {
-                    if (i == 5)
+                    if(i==5)
                     {
 
-                        teklaData.Add(new Paragraph(TeklaData[i] + " " + TeklaData[i + 1]).SetFont(f).SetFontSize(8));
+                        teklaData.Add(new Paragraph(TeklaData[i]+" "+TeklaData[i+1]).SetFont(f).SetFontSize(8));
                     }
                     else
                     {
@@ -205,10 +199,10 @@ namespace GLG
                          .AddCell(teklaData);
                 Cell sellerDate = new Cell().Add(selerData).SetBorder(Border.NO_BORDER);
 
-        /*************************************************** Buyer table *********************************************************/
+                /*************************************************** Buyer table *********************************************************/
                 Table buyerData = new Table(2);
-                buyerData.SetWidth(bstable.GetWidth().GetValue() / 2.0f - 8).SetKeepTogether(true)
-                    .SetWidth(bstable.GetWidth().GetValue() / 2.0f - 8)
+                buyerData.SetWidth(bstable.GetWidth().GetValue()/2.0f-8).SetKeepTogether(true)
+                    .SetWidth(bstable.GetWidth().GetValue()/2.0f-8)
                     .SetMarginBottom(0)
                     .SetMarginTop(0)
                     .SetMarginRight(0)
@@ -216,11 +210,11 @@ namespace GLG
                     .SetPadding(0)
                     .SetBorder(Border.NO_BORDER);
 
-                int cellcount = (data.CountNonEmptyFields() - 1) * 2;
+                int cellcount = (data.CountNonEmptyFields()-1)*2;
                 List<Cell> cells = new List<Cell>();
-                for (int i = 0; i < cellcount; i++)
+                for(int i = 0;i<cellcount;i++)
                 {
-                    if (0 == i % 2)
+                    if(0==i%2)
                     {
                         cells.Add(new Cell().SetBorder(Border.NO_BORDER).SetWidth(50).SetMarginTop(0)
                                                                         .SetMarginBottom(0)
@@ -237,9 +231,9 @@ namespace GLG
 
                 }
                 List<string> list = data.GetNonEmptyFields();
-                for (int i = 0, j = 2; i < cellcount; i++, j++)
+                for(int i = 0, j = 2;i<cellcount;i++, j++)
                 {
-                    if ((i & 1) == 0)
+                    if((i&1)==0)
                     {
                         cells[i].Add(new Paragraph().Add(new Text(list[j]).SetBold().SetFont(f).SetFontSize(8)));
                     }
@@ -249,7 +243,7 @@ namespace GLG
                     }
 
                 }
-                foreach (Cell cell in cells)
+                foreach(Cell cell in cells)
                 {
                     buyerData.AddCell(cell);
                 }
@@ -339,21 +333,24 @@ namespace GLG
                 productstable.AddCell(subtotal);
                 productstable.AddCell(subtotalValue1);
                 productstable.AddCell(subtotalValue2);
-                string[] totalV= pruductTableData[pruductTableData.Count()-1].Split('*');
+                string[] totalV = pruductTableData[pruductTableData.Count()-1].Split('*');
 
                 Cell total = new Cell().Add(new Paragraph(totalV[0]+':').SetFont(f).SetFontSize(11))
                                             .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
                                             .SetBold()
                                             .SetBorder(Border.NO_BORDER)
                                             ;
-                Cell totalValue= new Cell(1,2).Add(new Paragraph(totalV[1]).SetFont(f).SetFontSize(11))
+                Cell totalValue = new Cell(1,2).Add(new Paragraph(totalV[1]).SetFont(f).SetFontSize(11))
                                             .SetBold()
                                             .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT)
                                             .SetBorder(Border.NO_BORDER)
                                             ;
                 productstable.AddCell(new Cell(1,4).SetBorder(Border.NO_BORDER));
                 productstable.AddCell(total);
+
                 productstable.AddCell(totalValue);
+
+
                 document.Add(productstable).SetBorder(Border.NO_BORDER);
                 LayoutResult result = productstable.CreateRendererSubTree().SetParent(document.GetRenderer()).Layout(
                 new LayoutContext(new LayoutArea(1,new Rectangle(0,0,400,1e4f))));
@@ -366,14 +363,14 @@ namespace GLG
                     Paragraph marfaParagraph = new Paragraph(marfaText);
                     document.Add(marfaParagraph);
                     LayoutResult paragrafsize = marfaParagraph.CreateRendererSubTree().SetParent(document.GetRenderer()).Layout(new LayoutContext(new LayoutArea(1,new Rectangle(1000,1000))));
-                    vertycalLastPozition+=(int)result.GetOccupiedArea().GetBBox().GetHeight()+1;
+                    vertycalLastPozition+=(int)paragrafsize.GetOccupiedArea().GetBBox().GetHeight()+1;
                 }
                 float paddingValue = 10f;
                 Table lastFacturaTabel = new Table(3)
                                             .SetPadding(paddingValue)
                                             .SetBorder(new SolidBorder(DeviceRgb.RED,1.5F))
                                             .SetWidth(tableWidth);
-                
+
 
                 Cell cell19 = new Cell()
                                 .Add(new Paragraph("Intocmit de:").SetFontSize(9).SetFont(f).SetBold())
@@ -391,18 +388,112 @@ namespace GLG
                     .Add(new Paragraph("Semnatura de primire:").SetFontSize(9).SetFont(f).SetBold())
                     .SetBorder(Border.NO_BORDER);
                 lastFacturaTabel.AddCell(cell3);
-                
                 document.Add(lastFacturaTabel);
+                LayoutResult lastTableSize = lastFacturaTabel.CreateRendererSubTree().SetParent(document.GetRenderer()).Layout(
+                new LayoutContext(new LayoutArea(1,new Rectangle(0,0,400,1e4f))));
+                vertycalLastPozition+=(int)lastTableSize.GetOccupiedArea().GetBBox().GetHeight()+1;
 
+
+
+                /*****************************************CONDITIE DE GARANTIE**************************************************************/
+                /****************************************************************************************************************************/
+                float freePlaseHeight = PageSize.A4.GetHeight()-vertycalLastPozition-60;
+                if(freePlaseHeight<170)
+                {
+                    document.Add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+                    vertycalLastPozition=0;
+                }
+
+                Text te1 = new Text("\r\nCERTIFICAT DE GARANȚIE\r\n").SetFontSize(12).SetFont(f).SetTextAlignment(TextAlignment.CENTER).SetBold();
+                Text te2 = new Text("echipamente electrice și electronice").SetFontSize(10).SetFont(f);
+                Paragraph titelPara = new Paragraph().Add(te1).SetTextAlignment(TextAlignment.CENTER).Add(te2).SetTextAlignment(TextAlignment.CENTER);
+                document.Add(titelPara);
+                LayoutResult titelparagrafsize = titelPara.CreateRendererSubTree().SetParent(document.GetRenderer()).Layout(new LayoutContext(new LayoutArea(1,new Rectangle(1000,1000))));
+
+
+                Table PersoanaAutData = new Table(2).SetWidth(tableWidth).SetHeight(140-titelparagrafsize.GetOccupiedArea().GetBBox().GetHeight());
+                Cell persoanT = new Cell().SetHeight(30).SetWidth(140).Add(new Paragraph().Add(new Text("Persoana autorizată(electrician)\r\ncare a montat echipamentului ").SetFontSize(9).SetFont(f).SetBold()));
+                Cell reparatiT = new Cell().Add(new Paragraph().Add(new Text("Reparații în garanție:").SetFontSize(9).SetFont(f).SetBold()));
+                Cell datapersT = new Cell();
+                Cell datarepT = new Cell();
+                PersoanaAutData.AddCell(persoanT).AddCell(reparatiT).AddCell(datapersT).AddCell(datarepT);
+                document.Add(PersoanaAutData);
+                vertycalLastPozition+=140;
+                /********************************************************Productstabel*************************************************************/
+                //productList=>list string
+
+                //tabelheader;
+                Table productTable = new Table(6).SetWidth(tableWidth).SetMarginTop(7);
+                Table productTable2 = new Table(3).SetWidth(tableWidth).SetMarginTop(7);
+                Cell nr1 = new Cell().SetWidth(20).Add(new Paragraph().Add(new Text("Nr.").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                Cell produs1 = new Cell().SetWidth(120).Add(new Paragraph().Add(new Text("Denumire produs ").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                Cell serie1 = new Cell().Add(new Paragraph().Add(new Text("Nr. Serie").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                Cell nr2 = new Cell().SetWidth(20).Add(new Paragraph().Add(new Text("Nr.").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                Cell produs2 = new Cell().SetWidth(120).Add(new Paragraph().Add(new Text("Denumire produs").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                Cell serie2 = new Cell().Add(new Paragraph().Add(new Text("Nr. Serie").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+
+                int listsfert = productList.Count()/2;
+                if(listsfert<2)
+                {
+                    Cell nr = new Cell().Add(new Paragraph().Add(new Text("Nr.").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                    Cell produs = new Cell().Add(new Paragraph().Add(new Text("Denumire produs ").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+                    Cell serie = new Cell().SetWidth(170).Add(new Paragraph().Add(new Text("Nr. Serie").SetFontSize(10).SetFont(f).SetBold())).SetTextAlignment(TextAlignment.CENTER);
+
+                    productTable2.AddCell(nr).AddCell(produs).AddCell(serie).SetTextAlignment(TextAlignment.CENTER);
+
+                    for(int i = 0;i<productList.Count();i++)
+                    {
+                        Cell n = new Cell().Add(new Paragraph().Add(new Text(Convert.ToString((i+1))).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell p = new Cell().Add(new Paragraph().Add(new Text(productList[i]).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell s = new Cell();
+
+                        productTable2.AddCell(n)
+                            .AddCell(p)
+                            .AddCell(s);
+                    }
+                    document.Add(productTable2);
+                }
+                else
+                {
+                    productTable.AddCell(nr1).AddCell(produs1).AddCell(serie1).AddCell(nr2).AddCell(produs2).AddCell(serie2).SetTextAlignment(TextAlignment.CENTER);
+
+                    for(int i = 0, j = listsfert;i<listsfert;i++, j++)
+                    {
+                        Cell n = new Cell().Add(new Paragraph().Add(new Text(Convert.ToString((i+1))).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell p = new Cell().Add(new Paragraph().Add(new Text(productList[i]).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell s = new Cell();
+                        Cell n1 = new Cell().Add(new Paragraph().Add(new Text(Convert.ToString(j+1)).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell p1 = new Cell().Add(new Paragraph().Add(new Text(productList[j]).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell s1 = new Cell();
+
+                        productTable.AddCell(n)
+                            .AddCell(p)
+                            .AddCell(s)
+                            .AddCell(n1)
+                            .AddCell(p1)
+                            .AddCell(s1);
+                    }
+
+                    if(productList.Count()%2==1)
+                    {
+                        Cell n = new Cell().Add(new Paragraph().Add(new Text(Convert.ToString(productList.Count())).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell p = new Cell().Add(new Paragraph().Add(new Text(productList[productList.Count()-1]).SetFontSize(8).SetFont(f))).SetTextAlignment(TextAlignment.CENTER);
+                        Cell s = new Cell();
+                        productTable.AddCell(n)
+                           .AddCell(p)
+                           .AddCell(s);
+                    }
+                    document.Add(productTable);
+                }
                 /*************************************************** Pdfclosing********************************************************************************************/
                 pdf.Close();
             }
         }
         private static string cliensdata(string text)
         {
-            for (int i = 0; i < TeklaData.Length - 1; i += 2)
+            for(int i = 0;i<TeklaData.Length-1;i+=2)
             {
-                text = text.Replace(TeklaData[i] + TeklaData[i + 1], "");
+                text=text.Replace(TeklaData[i]+TeklaData[i+1],"");
             }
             return text;
         }
@@ -410,80 +501,80 @@ namespace GLG
         {
             CliensDataTabel data = new CliensDataTabel();
             int lastIndexName = text.IndexOf("\n");
-            text = text.Replace("\n", " ");
-            data.Name = text.Substring(0, lastIndexName);
-            text = RemoveExtraSpaces(text);
+            text=text.Replace("\n"," ");
+            data.Name=text.Substring(0,lastIndexName);
+            text=RemoveExtraSpaces(text);
             string input = text.Substring(lastIndexName).Trim();
             string[] words = input.Split(' ');
 
-            for (int i = 0; i < words.Length; i++)
+            for(int i = 0;i<words.Length;i++)
             {
-                if (words[i] == "Reg." || words[i] == "Reg. com.:" || words[i] == "Reg.com.:")
+                if(words[i]=="Reg."||words[i]=="Reg. com.:"||words[i]=="Reg.com.:")
                 {
-                    if (words[i] == "Reg.")
+                    if(words[i]=="Reg.")
                     {
-                        data.RegNumber = words[i + 2];
+                        data.RegNumber=words[i+2];
                     }
                     else
                     {
-                        data.RegNumber = words[i + 1];
+                        data.RegNumber=words[i+1];
                     }
 
 
                 }
-                else if (words[i] == "CIF:")
+                else if(words[i]=="CIF:")
                 {
-                    data.CIF = words[i + 1];
+                    data.CIF=words[i+1];
                 }
-                else if (words[i] == "Adresa:")
+                else if(words[i]=="Adresa:")
                 {
                     string address = "";
-                    for (int j = i + 1; j < words.Length; j++)
+                    for(int j = i+1;j<words.Length;j++)
                     {
-                        if (words[j].EndsWith(":"))
+                        if(words[j].EndsWith(":"))
                         {
                             break;
                         }
-                        address += words[j] + " ";
+                        address+=words[j]+" ";
                     }
-                    data.Address = address.Trim();
+                    data.Address=address.Trim();
                 }
-                else if (words[i] == "IBAN:")
+                else if(words[i]=="IBAN:")
                 {
-                    data.IBan1 = words[i + 1];
+                    data.IBan1=words[i+1];
                 }
-                else if (words[i] == "Tel.:")
+                else if(words[i]=="Tel.:")
                 {
-                    data.Tel = words[i + 1];
+                    data.Tel=words[i+1];
                 }
-                else if (words[i] == "Email:")
+                else if(words[i]=="Email:")
                 {
-                    data.Email = words[i + 1];
+                    data.Email=words[i+1];
                 }
-                else if (words[i] == "Website:")
+                else if(words[i]=="Website:")
                 {
-                    data.Website = words[i + 1];
+                    data.Website=words[i+1];
                 }
-                else if (words[i] == "Banca:")
+                else if(words[i]=="Banca:")
                 {
-                    data.Banka = words[i + 1];
+                    data.Banka=words[i+1];
                 }
-                else if (words[i] == "Tara:")
+                else if(words[i]=="Tara:")
                 {
-                    data.Tara = words[i + 1];
+                    data.Tara=words[i+1];
                 }
-                else if (words[i] == "Judet:")
+                else if(words[i]=="Judet:")
                 {
                     string judet = "";
-                    for (int j = i + 1; j < words.Length; j++)
+                    for(int j = i+1;j<words.Length;j++)
                     {
-                        if (words[j].EndsWith(":"))
+                        if(words[j].EndsWith(":"))
                         {
                             break;
                         }
-                        judet += words[j] + " ";
+                        judet+=words[j]+" ";
                     }
-                    data.Judet = judet.Trim();
+                    data.Judet=judet.Trim();
                 }
             }
 
@@ -491,7 +582,7 @@ namespace GLG
         }
         private static string RemoveExtraSpaces(string text)
         {
-            return Regex.Replace(text, @"\s+", " ");
+            return Regex.Replace(text,@"\s+"," ");
         }
         private static string[] necessaryDateSearch(string text)
         {
@@ -502,65 +593,68 @@ namespace GLG
                                         @"TVA la incasare \(([^)]+)\)",
                                         @"Termen plata: (.+)"
             };
-            for (int i = 0; i < necessaryDatesNumber; i++)
+            for(int i = 0;i<necessaryDatesNumber;i++)
             {
-                dates[i] = ExtractUsingRegex(regexExpression[i], text);
+                dates[i]=ExtractUsingRegex(regexExpression[i],text);
             }
             return dates;
         }
-        private static string ExtractUsingRegex(string regex, string sources)
+        private static string ExtractUsingRegex(string regex,string sources)
         {
-            Match match = Regex.Match(sources, regex);
+            Match match = Regex.Match(sources,regex);
             return match.Success ? match.Groups[1].Value.Trim() : null;
         }
         private static List<string> productsElemet(string text)
         {
             List<string> productList = new List<string>();
-            List<string> a = text.Split('\n').Select(s=>s.Trim()).ToList();
+            List<string> a = text.Split('\n').Select(s => s.Trim()).ToList();
             a.RemoveAll(s => string.IsNullOrWhiteSpace(s));
             Regex minta = new Regex(@"^\d+\s\w+");
-           
-            for (int i = 0; i < a.Count - 2; i++)
+
+            for(int i = 0;i<a.Count-2;i++)
             {
-                if (minta.IsMatch(a[i]) && !minta.IsMatch(a[i+1]) && !a[i+1].Contains("Subtotal"))
-                { int bucIndex= a[i].IndexOf("BUC");
-                    if (bucIndex == -1)
+                if(minta.IsMatch(a[i])&&!minta.IsMatch(a[i+1])&&!a[i+1].Contains("Subtotal"))
+                {
+                    int bucIndex = a[i].IndexOf("BUC");
+                    if(bucIndex==-1)
                     {
-                        bucIndex = a[i].IndexOf("buc");
+                        bucIndex=a[i].IndexOf("buc");
                     }
                     string second = a[i].Substring(bucIndex);
-                    string first = a[i].Substring(0, bucIndex);
-                    
-                    while (!minta.IsMatch(a[i+1]))
+                    string first = a[i].Substring(0,bucIndex);
+
+                    while(!minta.IsMatch(a[i+1])&&!a[i+1].Contains("Subtotal"))
                     {
-                        first += a[i+1];
-                      
+                        first+=a[i+1];
+
                         i++;
                     }
-                      
-                       productList.Add(addAsterisks(first+" "+second));
-                    
+
+                    productList.Add(addAsterisks(first+" "+second));
+
                 }
                 else if(minta.IsMatch(a[i]))
                 {
                     productList.Add(addAsterisks(a[i]));
                 }
             }
-            productList.Add(a[a.Count - 2].Replace(" ","*"));
-            productList.Add(a[a.Count - 1].Replace("plata","plata*"));
-            
+            productList.Add(a[a.Count-2].Replace(" ","*"));
+            productList.Add(a[a.Count-1].Replace("plata","plata*"));
+
             return productList;
         }
         private static string addAsterisks(string input)
         {
-            string felezo=null;
+            string felezo = null;
             if(input.Contains("BUC"))
             {
                 felezo="BUC";
-            }else if(input.Contains("buc"))
+            }
+            else if(input.Contains("buc"))
             {
                 felezo="buc";
-            }else if(input.Contains("ML"))
+            }
+            else if(input.Contains("ML"))
             {
                 felezo="ML";
             }
@@ -571,7 +665,7 @@ namespace GLG
             result+=help2;
 
             result=result.Replace(felezo,"*"+felezo+"*");
-            int indexbux=result.IndexOf(felezo);
+            int indexbux = result.IndexOf(felezo);
             if(indexbux==-1)
             {
                 indexbux=result.IndexOf(felezo);
@@ -582,4 +676,6 @@ namespace GLG
             return result;
         }
     }
-} 
+
+
+}

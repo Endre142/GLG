@@ -48,6 +48,7 @@ namespace GLG
             this.pdfViewer1 = new Spire.PdfViewer.Forms.PdfViewer();
             this.pdfDocumentViewer1 = new Spire.PdfViewer.Forms.PdfDocumentViewer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -327,6 +328,7 @@ namespace GLG
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.numericUpDown1);
@@ -340,6 +342,27 @@ namespace GLG
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(251, 1000);
             this.panel1.TabIndex = 32;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox2.BackColor = System.Drawing.Color.Red;
+            this.checkBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.checkBox2.FlatAppearance.BorderSize = 0;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox2.Font = new System.Drawing.Font("Times New Roman", 13.8F);
+            this.checkBox2.Location = new System.Drawing.Point(0, 464);
+            this.checkBox2.MaximumSize = new System.Drawing.Size(296, 70);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.checkBox2.Size = new System.Drawing.Size(251, 70);
+            this.checkBox2.TabIndex = 32;
+            this.checkBox2.Text = "Automatikus nyomtatás";
+            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.checkBox2.UseVisualStyleBackColor = false;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -369,7 +392,7 @@ namespace GLG
             this.comboBox1.Items.AddRange(new object[] {
             "KAZANDEPO",
             "CONTROLER"});
-            this.comboBox1.Location = new System.Drawing.Point(35, 487);
+            this.comboBox1.Location = new System.Drawing.Point(30, 549);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(186, 28);
             this.comboBox1.TabIndex = 30;
@@ -475,7 +498,7 @@ namespace GLG
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1229, 652);
+            this.ClientSize = new System.Drawing.Size(1229, 734);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pdfDocumentViewer1);
@@ -525,6 +548,7 @@ namespace GLG
         private Panel panel3;
         private ComboBox comboBox1;
         private CheckBox checkBox3;
+        private CheckBox checkBox2;
     }
 }
 

@@ -19,6 +19,7 @@ namespace GLG
         private string _banka;
         private string _tara;
         private string _judet;
+
         public CliensDataTabel(CliensDataTabel other)
         {
             _name = other._name;

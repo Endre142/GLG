@@ -11,26 +11,23 @@ namespace GLG
         private static FileSystemWatcher watcher = null;
         private string facturpath = null;
         private bool printDuplex = true;
+        private bool printAutomat = false;
+        private string mergedpdfPath=null;
+
         public Into_one()
         {
             InitializeComponent();
         }
-
         private void Into_one_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.GetMainForm().Show();
         }
-
-        private void Into_one_Load(object sender, EventArgs e)
+        private void Into_one_Load(object sender,EventArgs e)
         {
-            int viewerWidth = (Width - panel1.Width) / 2 - 60;
-            pdfDocumentViewer1.Size=new Size(viewerWidth,Height-110);
-            pdfDocumentViewer2.Size=new Size(viewerWidth,Height-110);
-            
-            pdfDocumentViewer1.Location = new Point(panel1.Width + 30, 30);
-            pdfDocumentViewer2.Location = new Point(panel1.Width + viewerWidth + 90, 30);
+            pdfDocumentViewer1.Size=new Size(Width-panel1.Width-100,Height-110);
+            pdfDocumentViewer1.Location=new Point(panel1.Width+50,30);
+           
         }
-
         private void automatic_operation_chekbox_CheckedChanged(object sender, EventArgs e)
         {
             if (automatic_operation_chekbox.Checked)
@@ -39,53 +36,122 @@ namespace GLG
                 if (watcher != null)
                 {
                     watcher.Renamed += OnFileRenamed;
-                    watcher.EnableRaisingEvents = true;
+                    watcher.EnableRaisingEvents =true;
                     MessageBox.Show("Figyelő elindult.");
+                    printAutomat = true;
                 }
             }
             else
             {
-                if (watcher != null)
+                if(watcher!=null)
                 {
-                    watcher.EnableRaisingEvents = false;
+                    watcher.EnableRaisingEvents=false;
                     MessageBox.Show("Figyelő leállítva.");
                 }
+                printAutomat=false;
             }
         }
-
         private void OnFileRenamed(object sender, FileSystemEventArgs e)
         {
             this.Invoke(new System.Action(async () =>
             {
-                    //folyatani
+                searchTask(e.FullPath);
             }));
         }
-
         private void search_button_Click(object sender, EventArgs e)
         {
-            facturpath = CommonPart.Filedialogpath();
-            if (facturpath != null)
+            pdfDocumentViewer1.LoadFromFile("../../files/clear.pdf");
+            mergedpdfPath=null;
+            searchTask(CommonPart.Filedialogpath());    
+        }
+        private void printing_button_Click(object sender, EventArgs e)
+        {
+            if(mergedpdfPath!=null)
             {
-                string facturacontent = Retdata.pdfText(facturpath);
-                List<string> products = CommonPart.ProductList(facturacontent);
-                if (0 != products.Count)
+                CommonPart.printer(mergedpdfPath,printDuplex);
+            } 
+        }
+        private void autoPrint_CheckedChanged(object sender,EventArgs e)
+        {
+            if(autoPrint.Checked)
+            {
+                printAutomat=true;
+            }
+            else
+            {
+                printAutomat=false;
+            }
+        }
+        private void saveButtom_Click(object sender,EventArgs e)
+        {
+            if(mergedpdfPath!=null)
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter="PDF fájlok (*.pdf)|*.pdf|Összes fájl (*.*)|*.*";
+                saveFileDialog1.FilterIndex=1;
+                saveFileDialog1.RestoreDirectory=true;
+
+                DialogResult result = saveFileDialog1.ShowDialog();
+
+                if(result==DialogResult.OK)
                 {
 
-                    RegeneredFactura.createFactura(facturacontent, products);
-                    pdfDocumentViewer1.LoadFromFile("factura.pdf");
+                    string filePath = saveFileDialog1.FileName;
+
+                    try
+                    {
+                        File.Copy(mergedpdfPath,filePath,true);
+
+                        MessageBox.Show("A fájl sikeresen mentve lett ide: "+filePath);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Hiba történt a fájl mentése közben: "+ex.Message);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Factrua Nyomtatas");
+                    MessageBox.Show("A mentés megszakítva.");
+                }
+                pdfDocumentViewer1.LoadFromFile("../../files/clear.pdf");
+                mergedpdfPath=null;
+            }
+            else
+            {
+                MessageBox.Show("Nem hoztál létre új fájlt.");
+            }
+           
+        }
+        private void searchTask(string facturapath)
+        {
+            
+
+            if(facturapath!=null)
+            {
+                string facturacontent = Retdata.pdfText(facturapath);
+                List<string> products = CommonPart.ProductList(facturacontent);
+                if(0!=products.Count)
+                {
+                    //RegeneredFactura.createFactura(facturacontent, products);
+                    string conditiePath = AddConditie.Create(products);
+                    mergedpdfPath=AddConditie.magePdf(facturapath,conditiePath);
+                    pdfDocumentViewer1.LoadFromFile(mergedpdfPath);
+                    if(printAutomat&&mergedpdfPath!=null)
+                    {
+                        CommonPart.printer(mergedpdfPath,printDuplex);
+                    }
+                }
+                else
+                {
+                    mergedpdfPath=facturapath;
+                    if(printAutomat&&mergedpdfPath!=null)
+                    {
+                        CommonPart.printer(mergedpdfPath,false);
+                    }
+                    pdfDocumentViewer1.LoadFromFile(mergedpdfPath);
                 }
             }
-            
         }
-
-        private void printing_button_Click(object sender, EventArgs e)
-        {
-           // CommonPart.printer(/*genealasi file utvonala*/, printDuplex);
-        }
-
     }
 }

@@ -159,6 +159,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddConditie.cs" />
     <Compile Include="CliensDataTabel.cs" />
     <Compile Include="CommonPart.cs" />
     <Compile Include="Form1.cs">

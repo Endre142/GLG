@@ -1,6 +1,5 @@
 ﻿using iText.Layout.Element;
 using iText.Kernel.Font;
-using iText.IO.Font.Constants;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
@@ -13,10 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using iText.IO.Font;
-using System.IO;
-using System.Drawing.Text;
-using System.Drawing;
+
 
 
 namespace GLG
