@@ -81,3 +81,7 @@ C:\Users\kajta\Desktop\GLG\GLG\GLG\obj\Debug\GLG.pdb
 C:\Users\kajta\Desktop\GLG\GLG\GLG\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\kajta\Desktop\GLG\GLG\GLG\bin\Debug\BouncyCastle.Crypto.xml
 C:\Users\kajta\Desktop\GLG\GLG\GLG\obj\Debug\GLG.csproj.Up2Date
+C:\Users\kajta\Desktop\GLG\GLG\GLG\bin\Debug\GLG.exe.manifest
+C:\Users\kajta\Desktop\GLG\GLG\GLG\bin\Debug\GLG.application
+C:\Users\kajta\Desktop\GLG\GLG\GLG\obj\Debug\GLG.exe.manifest
+C:\Users\kajta\Desktop\GLG\GLG\GLG\obj\Debug\GLG.application

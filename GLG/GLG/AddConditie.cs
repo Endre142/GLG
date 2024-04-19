@@ -152,7 +152,7 @@ namespace GLG
                 List<string> constdata = new List<string>();
                 constdata.Clear();
                 int seged = 0;
-                constdata=CommonPart.DataReader("..//..//files//ConstData.txt",ref seged);
+                constdata=CommonPart.DataReader("Resources//SourcesFiles//ConstData.txt",ref seged);
 
 
                 Text n_2 = new Text("");

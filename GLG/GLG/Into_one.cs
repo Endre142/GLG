@@ -60,7 +60,7 @@ namespace GLG
         }
         private void search_button_Click(object sender, EventArgs e)
         {
-            pdfDocumentViewer1.LoadFromFile("../../files/clear.pdf");
+            pdfDocumentViewer1.LoadFromFile(@"Resources//SourcesFiles//clear.pdf");
             mergedpdfPath=null;
             searchTask(CommonPart.Filedialogpath());    
         }
@@ -114,7 +114,7 @@ namespace GLG
                 {
                     MessageBox.Show("A mentés megszakítva.");
                 }
-                pdfDocumentViewer1.LoadFromFile("../../files/clear.pdf");
+                pdfDocumentViewer1.LoadFromFile("Resources//SourcesFiles//clear.pdf");
                 mergedpdfPath=null;
             }
             else

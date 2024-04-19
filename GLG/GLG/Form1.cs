@@ -27,10 +27,10 @@ namespace GLG
         private FileSystemWatcher watcher = null;
         private static string[] filepaths = new string[]
         {
-             "..//..//files//firstpage.pdf",
-             "..//..//files//secondpage.pdf",
-             "..//..//files//ConstData.txt",
-             "..//..//files//clear.pdf"
+             @"Resources\\SourcesFiles\\firstpage.pdf",
+             @"Resources\\SourcesFiles\\secondpage.pdf",
+             @"Resources\\SourcesFiles\\ConstData.txt",
+             @"Resources\\SourcesFiles\\clear.pdf"
         };
         private bool automaticalPrint = false;
 
@@ -124,7 +124,7 @@ namespace GLG
 
             }
         }
-        void Data_scanning(string filepath)
+        private void Data_scanning(string filepath)
         {
             pdfContent = Retdata.pdfText(filepath);
 
@@ -315,8 +315,9 @@ namespace GLG
         private void finishclear()
         {
             pdfDocumentViewer1.LoadFromFile(filepaths[3]);
-            numericUpDown1.Value = 4;
-            sor = 4;
+            numericUpDown1.Value=4;
+            wiever=null;
+            sor= 4;
             products.Clear();
             listBox1.Items.Clear();
             psf = "";

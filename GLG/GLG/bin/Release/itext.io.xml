@@ -1870,7 +1870,7 @@
             <param name="messageParams">additional params.</param>
             <returns>object itself.</returns>
         </member>
-        <member name="T:iText.IO.Exceptions.IoExceptionMessageConstant">
+        <member name="T:iText.IO.Exceptions.IoExceptionMessage">
             <summary>Class containing constants to be used in exceptions in the IO module.</summary>
         </member>
         <member name="T:iText.IO.Font.CFFFont.Item">
@@ -1976,6 +1976,7 @@
             A font which was not of CID type is transformed into CID as a part of the subset process.
             The CID synthetic creation was written by Sivan Toledo (sivan@math.tau.ac.il)
             </remarks>
+            <author>Oren Manor (manorore@post.tau.ac.il) and Ygal Blum (blumygal@post.tau.ac.il)</author>
         </member>
         <member name="F:iText.IO.Font.CFFFontSubset.SubrsFunctions">
             <summary>The Strings in this array represent Type1/Type2 operator names</summary>
@@ -2348,87 +2349,6 @@
             if it is CJKFont.
             </returns>
         </member>
-        <member name="T:iText.IO.Font.CjkResourceLoader">
-            <summary>This class is responsible for loading and handling CJK fonts and CMaps from font-asian package.</summary>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.IsPredefinedCidFont(System.String)">
-            <summary>
-            Checks if the font with the given name and encoding is one
-            of the predefined CID fonts.
-            </summary>
-            <param name="fontName">the font name.</param>
-            <returns>
-            
-            <see langword="true"/>
-            if it is CJKFont.
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetCompatibleCidFont(System.String)">
-            <summary>Finds a CJK font family which is compatible to the given CMap.</summary>
-            <param name="cmap">a name of the CMap for which compatible font is searched.</param>
-            <returns>a CJK font name if there's known compatible font for the given cmap name, or null otherwise.</returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetCompatibleCmaps(System.String)">
-            <summary>
-            Finds all CMap names that belong to the same registry to which a given
-            font belongs.
-            </summary>
-            <param name="fontName">a name of the font for which CMap's are searched.</param>
-            <returns>a set of CMap names corresponding to the given font.</returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetAllPredefinedCidFonts">
-            <summary>Get all loaded predefined CID fonts.</summary>
-            <returns>predefined CID fonts.</returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetRegistryNames">
-            <summary>Get all loaded CJK registry names mapped to a set of compatible cmaps.</summary>
-            <returns>CJK registry names mapped to a set of compatible cmaps.</returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetCid2UniCmap(System.String)">
-            <summary>Parses CMap with a given name producing it in a form of cid to unicode mapping.</summary>
-            <param name="uniMap">a CMap name. It is expected that CMap identified by this name defines unicode to cid mapping.
-                </param>
-            <returns>
-            an object for convenient mapping from cid to unicode. If no CMap was found for provided name
-            an exception is thrown.
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetUni2CidCmap(System.String)">
-            <summary>Parses CMap with a given name producing it in a form of unicode to cid mapping.</summary>
-            <param name="uniMap">a CMap name. It is expected that CMap identified by this name defines unicode to cid mapping.
-                </param>
-            <returns>
-            an object for convenient mapping from unicode to cid. If no CMap was found for provided name
-            an exception is thrown.
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetByte2CidCmap(System.String)">
-            <summary>Parses CMap with a given name producing it in a form of byte to cid mapping.</summary>
-            <param name="cmap">a CMap name. It is expected that CMap identified by this name defines byte to cid mapping.
-                </param>
-            <returns>
-            an object for convenient mapping from byte to cid. If no CMap was found for provided name
-            an exception is thrown.
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetCidToCodepointCmap(System.String)">
-            <summary>Parses CMap with a given name producing it in a form of cid to code point mapping.</summary>
-            <param name="cmap">a CMap name. It is expected that CMap identified by this name defines code point to cid mapping.
-                </param>
-            <returns>
-            an object for convenient mapping from cid to code point. If no CMap was found for provided name
-            an exception is thrown.
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.CjkResourceLoader.GetCodepointToCidCmap(System.String)">
-            <summary>Parses CMap with a given name producing it in a form of code point to cid mapping.</summary>
-            <param name="uniMap">a CMap name. It is expected that CMap identified by this name defines code point to cid mapping.
-                </param>
-            <returns>
-            an object for convenient mapping from code point to cid. If no CMap was found for provided name
-            an exception is thrown.
-            </returns>
-        </member>
         <member name="M:iText.IO.Font.CMapEncoding.#ctor(System.String)">
             <param name="cmap">CMap name.</param>
         </member>
@@ -2445,6 +2365,12 @@
             <param name="cmap">a CMAP</param>
             <returns>true, if the CMapEncoding was built with the cmap. Otherwise false.</returns>
         </member>
+        <member name="T:iText.IO.Font.Cmap.AbstractCMap">
+            <author>psoares</author>
+        </member>
+        <member name="T:iText.IO.Font.Cmap.CMapByteCid">
+            <author>psoares</author>
+        </member>
         <member name="M:iText.IO.Font.Cmap.CMapByteCid.DecodeSequence(System.Byte[],System.Int32,System.Int32)">
             <summary>Decode byte sequence.</summary>
             <param name="cidBytes">byteCodeBytes</param>
@@ -2452,7 +2378,10 @@
             <param name="length">number of bytes to process</param>
             <returns>string that contains decoded representation of the given sequence</returns>
         </member>
-        <member name="M:iText.IO.Font.Cmap.CMapCidToCodepoint.GetCodeSpaceRanges">
+        <member name="T:iText.IO.Font.Cmap.CMapCidByte">
+            <author>psoares</author>
+        </member>
+        <member name="M:iText.IO.Font.Cmap.CMapCidByte.GetCodeSpaceRanges">
             <summary>
             Returns a list containing sequential pairs of code space beginning and endings:
             (begincodespacerange1, endcodespacerange1, begincodespacerange2, endcodespacerange1, ...)
@@ -2463,15 +2392,8 @@
             that contain code space ranges
             </returns>
         </member>
-        <member name="T:iText.IO.Font.Cmap.CMapCodepointToCid">
-            <summary>Class represents real codepoint-CID mapping without any additional manipulation.</summary>
-            <remarks>
-            Class represents real codepoint-CID mapping without any additional manipulation.
-            <para />
-            See
-            <see cref="T:iText.IO.Font.Cmap.CMapCidToCodepoint"/>
-            for CID-codepoint representation.
-            </remarks>
+        <member name="T:iText.IO.Font.Cmap.CMapCidUni">
+            <author>psoares</author>
         </member>
         <member name="F:iText.IO.Font.Cmap.CMapContentParser.COMMAND_TYPE">
             <summary>Commands have this type.</summary>
@@ -2524,23 +2446,16 @@
             if the end of content was reached.
             </returns>
         </member>
-        <member name="M:iText.IO.Font.Cmap.CMapContentParser.DecodeName(System.Byte[])">
-            <summary>
-            Use
-            <see cref="M:iText.IO.Util.PdfNameUtil.DecodeName(System.Byte[])"/>
-            instead.
-            </summary>
-            <param name="content">to decode</param>
-            <returns>decoded content</returns>
-        </member>
         <member name="M:iText.IO.Font.Cmap.CMapContentParser.ToHex(System.Int32)">
             <summary>Gets an hex string in the format "&lt;HHHH&gt;".</summary>
             <param name="n">the number</param>
             <returns>the hex string</returns>
         </member>
-        <member name="M:iText.IO.Font.Cmap.CMapLocationResource.GetLocationPath">
-            <summary>Retrieve base folder path where CMaps are located.</summary>
-            <returns>CMaps location path.</returns>
+        <member name="T:iText.IO.Font.Cmap.CMapLocationFromBytes">
+            <author>psoares</author>
+        </member>
+        <member name="T:iText.IO.Font.Cmap.CMapLocationResource">
+            <author>psoares</author>
         </member>
         <member name="M:iText.IO.Font.Cmap.CMapObject.ToString">
             <summary>
@@ -2551,6 +2466,7 @@
         </member>
         <member name="T:iText.IO.Font.Cmap.CMapToUnicode">
             <summary>This class represents a CMap file.</summary>
+            <author>Ben Litchfield (ben@benlitchfield.com)</author>
         </member>
         <member name="M:iText.IO.Font.Cmap.CMapToUnicode.#ctor">
             <summary>Creates a new instance of CMap.</summary>
@@ -2566,26 +2482,11 @@
             <param name="length">The length of the data we are getting.</param>
             <returns>The string that matches the lookup.</returns>
         </member>
-        <member name="M:iText.IO.Font.Cmap.CMapToUnicode.GetCodeSpaceRanges">
-            <summary>
-            Returns a list containing sequential pairs of code space beginning and endings:
-            (begincodespacerange1, endcodespacerange1, begincodespacerange2, endcodespacerange1, ...)
-            </summary>
-            <returns>
-            list of
-            <c>byte[]</c>
-            that contain code space ranges
-            </returns>
+        <member name="T:iText.IO.Font.Cmap.CMapUniCid">
+            <author>psoares</author>
         </member>
-        <member name="M:iText.IO.Font.Cmap.CMapUniCid.GetCodePoints">
-            <summary>Returns all mapped code points.</summary>
-            <returns>an array containing all mapped code points</returns>
-        </member>
-        <member name="M:iText.IO.Font.Cmap.StandardCMapCharsets.DisableCharsetEncoders">
-            <summary>Charset encoders are disabled.</summary>
-        </member>
-        <member name="M:iText.IO.Font.Cmap.StandardCMapCharsets.EnableCharsetEncoders">
-            <summary>Charset encoders are enabled (default).</summary>
+        <member name="T:iText.IO.Font.Cmap.ICMapLocation">
+            <author>psoares</author>
         </member>
         <member name="T:iText.IO.Font.Constants.FontDescriptorFlags">
             <summary>Font descriptor flags</summary>
@@ -2820,18 +2721,6 @@
             <summary>This encoding will base on font encoding (FontSpecific encoding in Type 1 terminology)</summary>
             <returns>created font specific encoding</returns>
         </member>
-        <member name="M:iText.IO.Font.FontEncoding.FillFontEncoding(iText.IO.Font.FontEncoding)">
-            <summary>
-            Fill
-            <see cref="T:iText.IO.Font.FontEncoding"/>
-            object with default data.
-            </summary>
-            <param name="encoding">
-            
-            <see cref="T:iText.IO.Font.FontEncoding"/>
-            to fill.
-            </param>
-        </member>
         <member name="M:iText.IO.Font.FontEncoding.GetUnicode(System.Int32)">
             <summary>Gets unicode value for corresponding font's char code.</summary>
             <param name="index">font's char code</param>
@@ -3004,14 +2893,6 @@
             <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:iText.IO.Font.FontNames.GetFamilyName2">
-            <summary>Get extra family name if exists.</summary>
-            <returns>
-            extra family name if exists in the font,
-            <see langword="null"/>
-            otherwise.
-            </returns>
-        </member>
         <member name="M:iText.IO.Font.FontNames.SetFontWeight(System.Int32)">
             <summary>Sets font weight.</summary>
             <param name="weight">
@@ -3034,10 +2915,6 @@
             <see cref="T:iText.IO.Font.Constants.FontStretches"/>.
             </param>
         </member>
-        <member name="M:iText.IO.Font.FontNames.SetFamilyName2(System.String[][])">
-            <summary>Set extra family name used for better fonts match.</summary>
-            <param name="familyName2">family name to set.</param>
-        </member>
         <member name="M:iText.IO.Font.FontNames.SetMacStyle(System.Int32)">
             <summary>Sets Open Type head.macStyle.</summary>
             <remarks>
@@ -3051,8 +2928,7 @@
             <summary>The font's encoding name.</summary>
             <remarks>
             The font's encoding name. This encoding is 'StandardEncoding' or 'AdobeStandardEncoding' for a font
-            that can be totally encoded according to the characters names. For all other names the font is treated as
-            symbolic.
+            that can be totally encoded according to the characters names. For all other names the font is treated as symbolic.
             </remarks>
         </member>
         <member name="M:iText.IO.Font.FontProgram.GetWidth(System.Int32)">
@@ -3126,8 +3002,7 @@
             <remarks>
             Sets the PostScript italic angle.
             <para />
-            Italic angle in counter-clockwise degrees from the vertical. Zero for upright text, negative for text that leans
-            to the right (forward).
+            Italic angle in counter-clockwise degrees from the vertical. Zero for upright text, negative for text that leans to the right (forward).
             </remarks>
             <param name="italicAngle">in counter-clockwise degrees from the vertical</param>
         </member>
@@ -3160,14 +3035,6 @@
         </member>
         <member name="T:iText.IO.Font.FontProgramDescriptor">
             <summary>Base font descriptor.</summary>
-        </member>
-        <member name="M:iText.IO.Font.FontProgramDescriptor.GetFamilyName2LowerCase">
-            <summary>Get extra family name if exists.</summary>
-            <returns>
-            extra family name if exists in the font,
-            <see langword="null"/>
-            otherwise.
-            </returns>
         </member>
         <member name="T:iText.IO.Font.FontProgramFactory">
             <summary>Provides methods for creating various types of fonts.</summary>
@@ -3218,28 +3085,6 @@
             </remarks>
             <param name="fontProgram">the name of the font or its location on file</param>
             <param name="cached">whether to to cache this font program after it has been loaded</param>
-            <returns>
-            returns a new
-            <see cref="T:iText.IO.Font.FontProgram"/>
-            . This font program may come from the cache
-            </returns>
-        </member>
-        <member name="M:iText.IO.Font.FontProgramFactory.CreateFont(System.String,System.String,System.Boolean)">
-            <summary>Creates a new font program.</summary>
-            <remarks>
-            Creates a new font program. This font program can be one of the 14 built in fonts,
-            a Type1 font referred to by an AFM or PFM file, a TrueType font or
-            a CJK font from the Adobe Asian Font Pack.
-            Fonts in TrueType Collections are addressed by index such as "msgothic.ttc,1".
-            This would get the second font (indexes start at 0), in this case "MS PGothic".
-            <para />
-            The fonts are cached and if they already exist they are extracted from the cache,
-            not parsed again.
-            <para />
-            </remarks>
-            <param name="fontProgram">the name of the font or its location on file</param>
-            <param name="cmap">CMap to convert Unicode value to CID if CJK font is used</param>
-            <param name="cached">whether to cache this font program after it has been loaded</param>
             <returns>
             returns a new
             <see cref="T:iText.IO.Font.FontProgram"/>
@@ -3570,6 +3415,7 @@
             Classes implementing this interface can create custom encodings or
             replace existing ones. It is used in the context of <c>PdfEncoding</c>.
             </remarks>
+            <author>Paulo Soares</author>
         </member>
         <member name="M:iText.IO.Font.IExtraEncoding.CharToByte(System.String,System.String)">
             <summary>Converts an Unicode string to a byte array according to some encoding.</summary>
@@ -3937,6 +3783,12 @@
             if context matches, or -1 if context doesn't match
             </returns>
         </member>
+        <member name="T:iText.IO.Font.Otf.FeatureRecord">
+            <author>psoares</author>
+        </member>
+        <member name="T:iText.IO.Font.Otf.FontReadingException">
+            <author><a href="mailto:paawak@gmail.com">Palash Ray</a></author>
+        </member>
         <member name="M:iText.IO.Font.Otf.Glyph.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>Construct a non-mark Glyph, retrieving characters from unicode.</summary>
             <param name="code">code representation of the glyph in the font file</param>
@@ -4078,6 +3930,7 @@
             <para />
             This has been written according to the OPenTypeFont specifications. This may be found <a href="http://www.microsoft.com/typography/otspec/gsub.htm">here</a>.
             </remarks>
+            <author><a href="mailto:paawak@gmail.com">Palash Ray</a></author>
         </member>
         <member name="T:iText.IO.Font.Otf.GlyphSubstitutionTableReader">
             <summary>Parses an OpenTypeFont file and reads the Glyph Substitution Table.</summary>
@@ -4087,6 +3940,7 @@
             <para />
             This has been written according to the OPenTypeFont specifications. This may be found <a href="http://www.microsoft.com/typography/otspec/gsub.htm">here</a>.
             </remarks>
+            <author><a href="mailto:paawak@gmail.com">Palash Ray</a></author>
         </member>
         <member name="T:iText.IO.Font.Otf.GposLookupType1">
             <summary>Lookup Type 1: Single Adjustment Positioning Subtable</summary>
@@ -4127,14 +3981,20 @@
             Chaining Contextual Positioning Subtable
             </summary>
         </member>
+        <member name="T:iText.IO.Font.Otf.GsubLookupType1">
+            <summary>LookupType 1: Single Substitution Subtable</summary>
+            <author>psoares</author>
+        </member>
         <member name="T:iText.IO.Font.Otf.GsubLookupType2">
             <summary>LookupType 2: Multiple Substitution Subtable</summary>
         </member>
         <member name="T:iText.IO.Font.Otf.GsubLookupType3">
             <summary>LookupType 3: Alternate Substitution Subtable</summary>
+            <author>psoares</author>
         </member>
         <member name="T:iText.IO.Font.Otf.GsubLookupType4">
             <summary>LookupType 4: Ligature Substitution Subtable</summary>
+            <author>psoares</author>
         </member>
         <member name="F:iText.IO.Font.Otf.GsubLookupType4.ligatures">
             <summary>The key is the first character.</summary>
@@ -4158,6 +4018,7 @@
             Note that tags in OTF always consist of exactly 4 bytes. Shorter
             identifiers are padded with spaces as necessary.
             </remarks>
+            <author><a href="mailto:matthias.valvekens@itextpdf.com">Matthias Valvekens</a></author>
         </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype5.SubTableLookup5Format1">
             <summary>Contextual Substitution Subtable: Simple context glyph substitution</summary>
@@ -4185,6 +4046,12 @@
         </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype8.PosTableLookup8Format3">
             <summary>Chained Contexts Positioning Format 3: Coverage-based Glyph Contexts</summary>
+        </member>
+        <member name="T:iText.IO.Font.Otf.MarkTable">
+            <author>psoares</author>
+        </member>
+        <member name="T:iText.IO.Font.Otf.OpenTypeFontTableReader">
+            <author><a href="mailto:paawak@gmail.com">Palash Ray</a></author>
         </member>
         <member name="M:iText.IO.Font.Otf.OpenTypeFontTableReader.StartReadingTable">
             <summary>This is the starting point of the class.</summary>
@@ -4265,7 +4132,7 @@
         <member name="M:iText.IO.Font.PdfEncodings.ConvertToBytes(System.Char,System.String)">
             <summary>
             Converts a
-            <c>char</c>
+            <c>String</c>
             to a
             <c>byte</c>
             array according
@@ -4463,6 +4330,7 @@
         </member>
         <member name="T:iText.IO.Font.TrueTypeFontSubset">
             <summary>Subsets a True Type font by removing the unneeded glyphs from the font.</summary>
+            <author>Paulo Soares</author>
         </member>
         <member name="F:iText.IO.Font.TrueTypeFontSubset.tableDirectory">
             <summary>Contains the location of the several tables.</summary>
@@ -6210,11 +6078,6 @@
         </member>
         <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String)">
             <summary>Runs Ghostscript to render the PDF's pages as PNG images.</summary>
-            <remarks>
-            Runs Ghostscript to render the PDF's pages as PNG images.
-            <para />
-            Note, that this method  may create temporary directory and files.
-            </remarks>
             <param name="pdf">Path to the PDF file to be rendered</param>
             <param name="outDir">Path to the output directory, in which the rendered pages will be stored</param>
             <param name="image">
@@ -6229,11 +6092,6 @@
         </member>
         <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String,System.String)">
             <summary>Runs Ghostscript to render the PDF's pages as PNG images.</summary>
-            <remarks>
-            Runs Ghostscript to render the PDF's pages as PNG images.
-            <para />
-            Note, that this method  may create temporary directory and files.
-            </remarks>
             <param name="pdf">Path to the PDF file to be rendered</param>
             <param name="outDir">Path to the output directory, in which the rendered pages will be stored</param>
             <param name="image">
@@ -6502,11 +6360,6 @@
         </member>
         <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompare(System.String,System.String,System.String)">
             <summary>Runs imageMagick to visually compare images and generate difference output.</summary>
-            <remarks>
-            Runs imageMagick to visually compare images and generate difference output.
-            <para />
-            Note, that this method may create temporary files.
-            </remarks>
             <param name="outImageFilePath">Path to the output image file</param>
             <param name="cmpImageFilePath">Path to the cmp image file</param>
             <param name="diffImageName">Path to the difference output image file</param>
@@ -6515,11 +6368,6 @@
         <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompare(System.String,System.String,System.String,System.String)">
             <summary>Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
                 </summary>
-            <remarks>
-            Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
-            <para />
-            Note, that this method may create temporary files.
-            </remarks>
             <param name="outImageFilePath">Path to the output image file</param>
             <param name="cmpImageFilePath">Path to the cmp image file</param>
             <param name="diffImageName">Path to the difference output image file</param>
@@ -6534,12 +6382,6 @@
             Runs imageMagick to visually compare images with the specified fuzziness value and given threshold
             and generate difference output.
             </summary>
-            <remarks>
-            Runs imageMagick to visually compare images with the specified fuzziness value and given threshold
-            and generate difference output.
-            <para />
-            Note, that this method may create temporary files.
-            </remarks>
             <param name="outImageFilePath">Path to the output image file</param>
             <param name="cmpImageFilePath">Path to the cmp image file</param>
             <param name="diffImageName">Path to the difference output image file</param>
@@ -6559,8 +6401,6 @@
             <see cref="T:iText.IO.Util.ImageMagickCompareResult"/>
             , containing comparing result information,
             such as boolean result value and the number of different pixels.
-            <para />
-            Note, that this method may create temporary files.
             </remarks>
             <param name="outImageFilePath">Path to the output image file</param>
             <param name="cmpImageFilePath">Path to the cmp image file</param>
@@ -6584,6 +6424,11 @@
             not be supported in future releases of Jakarta Commons Lang.  Utilities of
             this sort may be included in future releases of Jakarta Commons Collections.
             </remarks>
+            <author>Justin Couch</author>
+            <author>Alex Chaffee (alex@apache.org)</author>
+            <author>Stephen Colebourne</author>
+            <author>Bruno Lowagie (change Objects as keys into int values)</author>
+            <author>Paulo Soares (added extra methods)</author>
         </member>
         <member name="F:iText.IO.Util.IntHashtable.count">
             <summary>The total number of entries in the hash table.</summary>
@@ -6761,13 +6606,6 @@
             <param name="key">The key used to enter this in the table</param>
             <param name="value">The value for this key</param>
             <param name="next">A reference to the next entry in the table</param>
-        </member>
-        <member name="T:iText.IO.Util.PdfNameUtil">
-            <summary>This file is a helper class for internal usage only.</summary>
-            <remarks>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </remarks>
         </member>
         <member name="T:iText.IO.Util.ResourceUtil">
             <summary>
@@ -7021,6 +6859,14 @@
             </summary>
             <param name="file">a given file</param>
             <returns>a valid Uri</returns>
+        </member>
+        <member name="M:iText.IO.Util.UrlUtil.GetFinalURL(System.Uri)">
+            <summary>
+            This method gets the last redirected url.
+            </summary>
+            <param name="uri">an initial url.</param>
+            
+            <returns>the last redirected url.</returns>
         </member>
         <member name="M:iText.IO.Util.UrlUtil.GetFileUriString(System.String)">
             <summary>

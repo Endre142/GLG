@@ -5,18 +5,7 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLG", "GLG\GLG.csproj", "{D8780DFD-300A-4D19-B057-2140619FF85C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A671D0E8-348F-4267-AE15-5E6EFE59281B}"
-	ProjectSection(SolutionItems) = preProject
-		GLG\Retdata.cs = GLG\Retdata.cs
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{BD664376-ED90-48A7-93B5-1D7467F4F151}"
-	ProjectSection(SolutionItems) = preProject
-		GLG\files\clear.pdf = GLG\files\clear.pdf
-		GLG\files\ConstData.txt = GLG\files\ConstData.txt
-		GLG\files\firstpage.pdf = GLG\files\firstpage.pdf
-		GLG\files\secondpage.pdf = GLG\files\secondpage.pdf
-	EndProjectSection
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GLG2.0", "GLG2.0\GLG2.0.vdproj", "{7DE204CB-CBA1-474A-BFE9-100FB46290D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,12 +17,11 @@ Global
 		{D8780DFD-300A-4D19-B057-2140619FF85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8780DFD-300A-4D19-B057-2140619FF85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8780DFD-300A-4D19-B057-2140619FF85C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE204CB-CBA1-474A-BFE9-100FB46290D5}.Debug|Any CPU.ActiveCfg = Debug
+		{7DE204CB-CBA1-474A-BFE9-100FB46290D5}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BD664376-ED90-48A7-93B5-1D7467F4F151} = {A671D0E8-348F-4267-AE15-5E6EFE59281B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E451B69B-91A6-47CD-901F-0DB0F7DC9205}

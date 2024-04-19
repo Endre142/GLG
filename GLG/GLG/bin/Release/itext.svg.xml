@@ -1170,75 +1170,6 @@
             <summary>Sets the root font size.</summary>
             <param name="fontSizeStr">the new root font size</param>
         </member>
-        <member name="T:iText.Svg.Css.SvgStrokeParameterConverter">
-            <summary>This class converts stroke related SVG parameters and attributes into those from PDF specification.
-                </summary>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.ConvertStrokeDashParameters(System.String,System.String,System.Single,iText.Svg.Renderers.SvgDrawContext)">
-            <summary>Convert stroke related SVG parameters and attributes into PDF line dash parameters.</summary>
-            <param name="strokeDashArray">'stroke-dasharray' css property value.</param>
-            <param name="strokeDashOffset">'stroke-dashoffset' css property value.</param>
-            <param name="fontSize">font size of the current element.</param>
-            <param name="context">the svg draw context.</param>
-            <returns>
-            PDF line dash parameters represented by
-            <see cref="T:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters"/>.
-            </returns>
-        </member>
-        <member name="T:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters">
-            <summary>This class represents PDF dash parameters.</summary>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters.#ctor(System.Single[],System.Single)">
-            <summary>Construct PDF dash parameters.</summary>
-            <param name="dashArray">
-            Numbers that specify the lengths of alternating dashes and gaps;
-            the numbers shall be nonnegative and not all zero.
-            </param>
-            <param name="dashPhase">A number that specifies the distance into the dash pattern at which to start the dash.
-                </param>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters.GetDashArray">
-            <summary>Return dash array.</summary>
-            <returns>dash array.</returns>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters.GetDashPhase">
-            <summary>Return dash phase.</summary>
-            <returns>dash phase.</returns>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters.Equals(System.Object)">
-            <summary>Check if some object is equal to the given object.</summary>
-        </member>
-        <member name="M:iText.Svg.Css.SvgStrokeParameterConverter.PdfLineDashParameters.GetHashCode">
-            <summary>Generate a hash code for this object.</summary>
-            <returns>hash code.</returns>
-        </member>
-        <member name="T:iText.Svg.Element.SvgImage">
-            <summary>A layout element that represents SVG image for inclusion in the document model.</summary>
-        </member>
-        <member name="M:iText.Svg.Element.SvgImage.#ctor(iText.Svg.Xobject.SvgImageXObject)">
-            <summary>
-            Creates an
-            <see cref="T:iText.Svg.Element.SvgImage"/>
-            from the
-            <see cref="T:iText.Svg.Xobject.SvgImageXObject"/>
-            which represents Form XObject and contains
-            processor result with the SVG information and resource resolver for the SVG image.
-            </summary>
-            <param name="xObject">
-            an internal
-            <see cref="T:iText.Svg.Xobject.SvgImageXObject"/>.
-            </param>
-        </member>
-        <member name="M:iText.Svg.Element.SvgImage.Generate(iText.Kernel.Pdf.PdfDocument)">
-            <summary>
-            Draws SVG image to a canvas-like object maintained in the
-            <see cref="T:iText.Svg.Renderers.SvgDrawContext"/>.
-            </summary>
-            <param name="document">pdf that shall contain the SVG image.</param>
-        </member>
-        <member name="M:iText.Svg.Element.SvgImage.MakeNewRenderer">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="T:iText.Svg.Exceptions.SvgExceptionMessageConstant">
             <summary>Class that bundles all the error message templates as constants.</summary>
         </member>
@@ -1982,13 +1913,13 @@
             <param name="context">the svg draw context</param>
         </member>
         <member name="M:iText.Svg.Renderers.Impl.AbstractSvgNodeRenderer.ParseAbsoluteLength(System.String,System.Single,System.Single,iText.Svg.Renderers.SvgDrawContext)">
-            <summary>Parse length attributes.</summary>
+            <summary>Parse absolute length.</summary>
             <param name="length">
             
             <see cref="T:System.String"/>
             for parsing
             </param>
-            <param name="percentBaseValue">the value on which percent length is based on</param>
+            <param name="percentRelativeValue">the value on which percent length is based on</param>
             <param name="defaultValue">default value if length is not recognized</param>
             <param name="context">
             current
@@ -3123,24 +3054,6 @@
         <member name="M:iText.Svg.Renderers.SvgDrawContext.PopPatternId">
             <summary>Pops the last template id from the stack.</summary>
         </member>
-        <member name="T:iText.Svg.Renderers.SvgImageRenderer">
-            <summary>
-            Represents a renderer for the
-            <see cref="T:iText.Svg.Element.SvgImage"/>
-            layout element.
-            </summary>
-        </member>
-        <member name="M:iText.Svg.Renderers.SvgImageRenderer.#ctor(iText.Svg.Element.SvgImage)">
-            <summary>Creates an SvgImageRenderer from its corresponding layout object.</summary>
-            <param name="image">
-            the
-            <see cref="T:iText.Svg.Element.SvgImage"/>
-            which this object should manage
-            </param>
-        </member>
-        <member name="M:iText.Svg.Renderers.SvgImageRenderer.Draw(iText.Layout.Renderer.DrawContext)">
-            <summary><inheritDoc/></summary>
-        </member>
         <member name="T:iText.Svg.SvgConstants">
             <summary>
             A class containing constant values signifying the proeprty names of tags, attribute, CSS-style
@@ -4123,39 +4036,6 @@
             <summary>This method extracts the values from a transformation.</summary>
             <param name="transformation">the transformation</param>
             <returns>values of the transformation</returns>
-        </member>
-        <member name="T:iText.Svg.Xobject.SvgImageXObject">
-            <summary>A wrapper for Form XObject for SVG images.</summary>
-        </member>
-        <member name="M:iText.Svg.Xobject.SvgImageXObject.#ctor(iText.Kernel.Geom.Rectangle,iText.Svg.Processors.ISvgProcessorResult,iText.StyledXmlParser.Resolver.Resource.ResourceResolver)">
-            <summary>Creates a new instance of Form XObject for the SVG image.</summary>
-            <param name="bBox">the form XObject’s bounding box.</param>
-            <param name="result">processor result containing the SVG information.</param>
-            <param name="resourceResolver">
-            
-            <see cref="T:iText.StyledXmlParser.Resolver.Resource.ResourceResolver"/>
-            for the SVG image.
-            </param>
-        </member>
-        <member name="M:iText.Svg.Xobject.SvgImageXObject.GetResult">
-            <summary>Returns processor result containing the SVG information.</summary>
-            <returns>{ISvgProcessorResult} processor result.</returns>
-        </member>
-        <member name="M:iText.Svg.Xobject.SvgImageXObject.GetResourceResolver">
-            <summary>Returns resource resolver for the SVG image.</summary>
-            <returns>
-            
-            <see cref="T:iText.StyledXmlParser.Resolver.Resource.ResourceResolver"/>
-            instance
-            </returns>
-        </member>
-        <member name="M:iText.Svg.Xobject.SvgImageXObject.Generate(iText.Kernel.Pdf.PdfDocument)">
-            <summary>Processes xObject before first image generation to avoid drawing it twice or more.</summary>
-            <remarks>
-            Processes xObject before first image generation to avoid drawing it twice or more. It allows to reuse the same
-            Form XObject multiple times.
-            </remarks>
-            <param name="document">pdf that shall contain the SVG image.</param>
         </member>
     </members>
 </doc>

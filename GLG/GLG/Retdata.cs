@@ -53,13 +53,13 @@ namespace GLG
                     pdf_nev+=client[i];
                 }
             }
-            last_path=pa+"\\"+psf+"_"+pdf_nev+".pdf";
+            last_path=@""+pa+"\\"+psf+"_"+pdf_nev+".pdf";
             wiever=last_path;
             PdfWriter writer = new PdfWriter(last_path);
             iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer);
             Document document = new Document(pdf);
 
-            string fontPath2 = @"C:\Windows\Fonts\arial.ttf";
+            string fontPath2 = @"C:\\Windows\Fonts\\arial.ttf";
 
             try
             {
@@ -69,11 +69,11 @@ namespace GLG
                 string imagePath;
                 if (Convert.ToBoolean(logo_image_number))
                 {
-                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "image", "con_log.jpg");
+                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "image", "con_log.jpg");
                 }
                 else
                 {
-                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources", "image", "kazandepo.png");
+                    imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "image", "kazandepo.png");
                 }
 
 
@@ -292,7 +292,7 @@ namespace GLG
             }
                 catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("RetData.cs"+ex.Message);
             }
 
             
